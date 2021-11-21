@@ -13,6 +13,7 @@ import opensea from './assets/open-sea.png';
 import borderBottom from './assets/up-top-image.svg';
 import borderBottomT from './assets/up-top-image2.svg';
 import greenMiner from './assets/GreenMiner.png';
+import axios from 'axios';
 
 const truncate = (input, len) =>
 	input.length > len ? `${input.substring(0, len)}...` : input;
@@ -24,6 +25,7 @@ function App() {
 	const [claimingNft, setClaimingNft] = useState(false);
 	const [feedback, setFeedback] = useState(`Presale Mint`);
 	const [mintAmount, setMintAmount] = useState(1);
+	// const [cryptos, setCryptos] = useState();
 	const [CONFIG, SET_CONFIG] = useState({
 		CONTRACT_ADDRESS: '',
 		SCAN_LINK: '',
@@ -115,6 +117,19 @@ function App() {
 	useEffect(() => {
 		getData();
 	}, [blockchain.account]);
+
+	// useEffect(() => {
+	// 	axios
+	// 		.get(
+	// 			'https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT&tsyms=USD'
+	// 		)
+	// 		.then((res) => {
+	// 			const cryptos = res.data;
+	// 			setCryptos({ cryptos: cryptos });
+	// 		});
+	// }, []);
+
+	// console.log('here', cryptos);
 
 	return (
 		<>
@@ -230,7 +245,7 @@ function App() {
 											<h5>
 												{/* 1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{' '}
 											{CONFIG.NETWORK.SYMBOL}. */}
-												0/07 ETH + GAS
+												0.07 ETH + GAS each
 											</h5>
 											<button
 												disabled={claimingNft ? 8 : 0}
