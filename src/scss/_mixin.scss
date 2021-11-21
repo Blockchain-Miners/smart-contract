@@ -1,0 +1,25 @@
+// SCSS SYNTAX
+// @mixin transform($property) {
+//   -webkit-transform: $property;
+//   -ms-transform: $property;
+//   transform: $property;
+// }
+// .box { @include transform(rotate(30deg)); }
+
+@mixin centerBox($justify: center, $align: center) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: $justify;
+  -ms-flex-pack: $justify;
+  justify-content: $justify;
+  -webkit-box-align: $align;
+  -ms-flex-align: $align;
+  align-items: $align;
+}

@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Set core body defaults */
+body {
+	text-rendering: optimizeSpeed;
+	font-family: $fontFamily !important;
+	background-color: $bgColor;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+h2 {
+	font-size: 30px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+p {
+	font-size: 18px;
+	font-weight: 400;
+	font-family: $fontFamily !important;
+	color: $color2;
+	line-height: 27px;
+	@media (max-width: 400px) {
+		font-size: 16px;
+	}
+	strong {
+		color: white;
+		font-weight: 600;
+	}
+}
+
+.iconsBox {
+	width: 100%;
+	padding-top: 41px;
+	@include centerBox(space-around, center);
+	.logo {
+		@include centerBox(flex-start, center);
+		img {
+			width: 64px;
+			height: auto;
+		}
+		h1 {
+			margin-left: 20px;
+			font-style: normal;
+			font-weight: bold;
+			font-size: 30px;
+			line-height: 45px;
+			@media (max-width: 600px) {
+				display: none;
+			}
+		}
+	}
+	.socialMedia {
+		@include centerBox();
+		flex-wrap: nowrap;
+		img {
+			margin: 0 5px;
+		}
+	}
+}
