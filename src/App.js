@@ -129,8 +129,6 @@ function App() {
 	// 		});
 	// }, []);
 
-	// console.log('here', cryptos);
-
 	return (
 		<>
 			<div className="homePage">
@@ -243,9 +241,8 @@ function App() {
 
 										<>
 											<h5>
-												{/* 1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{' '}
-											{CONFIG.NETWORK.SYMBOL}. */}
-												0.07 ETH + GAS each
+												{(CONFIG.DISPLAY_COST * mintAmount).toFixed(2)}{' '}
+												{CONFIG.NETWORK.SYMBOL} + GAS
 											</h5>
 											<button
 												disabled={claimingNft ? 8 : 0}
