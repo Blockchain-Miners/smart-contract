@@ -64,7 +64,7 @@ function App() {
 			})
 			.once('error', (err) => {
 				console.log(err);
-				setFeedback('Sorry, something went wrong please try again later.');
+				setFeedback('You have no available presale mints.');
 				setClaimingNft(false);
 			})
 			.then((receipt) => {
