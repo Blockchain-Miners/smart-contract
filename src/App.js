@@ -64,7 +64,9 @@ function App() {
 			})
 			.once('error', (err) => {
 				console.log(err);
-				setFeedback('You do not have enough presale mints.');
+				setFeedback(
+					'You do not have enough presale mints or you are not whitelisted.'
+				);
 				setClaimingNft(false);
 			})
 			.then((receipt) => {
