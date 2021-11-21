@@ -114,7 +114,7 @@ function App() {
 
 	useEffect(() => {
 		getConfig();
-	});
+	}, []);
 
 	useEffect(() => {
 		getData();
