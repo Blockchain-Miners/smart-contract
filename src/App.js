@@ -13,10 +13,10 @@ import opensea from './assets/open-sea.png';
 import borderBottom from './assets/up-top-image.svg';
 import borderBottomT from './assets/up-top-image2.svg';
 import greenMiner from './assets/GreenMiner.png';
-import axios from 'axios';
+// import axios from 'axios';
 
-const truncate = (input, len) =>
-	input.length > len ? `${input.substring(0, len)}...` : input;
+// const truncate = (input, len) =>
+// 	input.length > len ? `${input.substring(0, len)}...` : input;
 
 function App() {
 	const dispatch = useDispatch();
@@ -64,7 +64,7 @@ function App() {
 			})
 			.once('error', (err) => {
 				console.log(err);
-				setFeedback('You have no available presale mints.');
+				setFeedback('You do not have enough presale mints.');
 				setClaimingNft(false);
 			})
 			.then((receipt) => {
@@ -178,7 +178,11 @@ function App() {
 								<p>The sale has ended.</p>
 								<p>You can still find {CONFIG.NFT_NAME} on</p>
 
-								<a target={'_blank'} href={CONFIG.MARKETPLACE_LINK}>
+								<a
+									target="_blank"
+									rel="noreferrer"
+									href={CONFIG.MARKETPLACE_LINK}
+								>
 									{CONFIG.MARKETPLACE}
 								</a>
 							</>
