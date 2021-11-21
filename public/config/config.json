@@ -1,6 +1,6 @@
 {
-  "CONTRACT_ADDRESS": "0x827acb",
-  "SCAN_LINK": "https://polygonscan.com/token/0x827acb",
+  "CONTRACT_ADDRESS": "0x4FF108EFBC4E763d25d0B41B7A37a3D4C487496E",
+  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x4FF108EFBC4E763d25d0B41B7A37a3D4C487496E",
   "NETWORK": {
     "NAME": "Ether",
     "SYMBOL": "ETH",
