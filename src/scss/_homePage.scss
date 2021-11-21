@@ -1,0 +1,168 @@
+.homePage {
+	background-color: $color1;
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	position: relative;
+	padding: 20px 20px 100px;
+
+	.wrapperCont {
+		width: 100%;
+		max-width: 600px;
+		margin: 0 auto;
+		position: relative;
+		.blueMiner {
+			width: 100%;
+			text-align: center;
+			padding-bottom: 50px;
+			img {
+				max-width: 372px;
+				margin: 29px auto;
+			}
+		}
+
+		.connectBox {
+			width: 100%;
+			max-width: 360px;
+			margin: 10px auto;
+			background: #191919;
+			border-radius: 10px;
+			padding: 33px 20px;
+			.btnConnect {
+				@include centerBox();
+				border: none;
+				width: 100%;
+				max-width: 300px;
+				height: 60px;
+				margin: 0 auto;
+				font-weight: bold;
+				font-size: 30px;
+				line-height: 45px;
+				background: #ffffff;
+				border-radius: 4px;
+				color: #000000;
+				cursor: pointer;
+			}
+		}
+		.mintBox {
+			width: 100%;
+			max-width: 360px;
+			margin: 0 auto;
+			background: #191919;
+			border-radius: 10px;
+			padding: 10px 10px 33px;
+			h3 {
+				font-weight: bold;
+				font-size: 24px;
+				line-height: 36px;
+				text-align: center;
+				color: #ffffff;
+			}
+			.totalSupply {
+				font-weight: bold;
+				font-size: 36px;
+				line-height: 54px;
+				text-align: center;
+				color: #faff11;
+				margin: 5px auto 20px;
+				padding: 0;
+			}
+			.quantityBtns {
+				@include centerBox();
+				.quantityBtnMin {
+					border: none;
+					border-radius: 50%;
+					width: 50px;
+					height: 50px;
+					font-weight: bolder;
+					font-size: 40px;
+					text-align: center;
+					color: #000000;
+					cursor: pointer;
+					strong {
+						margin-top: -5px;
+						height: 5px;
+						line-height: 0px;
+					}
+				}
+				.quantityBtn {
+					border: none;
+					border-radius: 50%;
+					width: 50px;
+					height: 50px;
+					font-weight: bolder;
+					font-size: 40px;
+					line-height: 50px;
+					text-align: center;
+					color: #000000;
+					cursor: pointer;
+				}
+				.amount {
+					margin: 10px 50px;
+					font-weight: bold;
+					font-size: 48px;
+					line-height: 72px;
+					text-align: center;
+					color: #ffffff;
+				}
+			}
+
+			h5 {
+				font-size: 14px;
+				line-height: 21px;
+				color: #ffffff;
+				font-weight: 400;
+				padding: 0;
+				width: 100%;
+				text-align: center;
+				margin: 0 auto 10px;
+			}
+			.btnMint {
+				@include centerBox();
+				border: none;
+				width: 300px;
+				height: 60px;
+				margin: 0 auto;
+				font-weight: bold;
+				font-size: 30px;
+				line-height: 45px;
+				background: #ffffff;
+				border-radius: 4px;
+				color: #000000;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.yellowDivisor {
+		width: 100%;
+		position: absolute;
+		bottom: -1px;
+		width: 100%;
+		left: 0;
+		right: 0;
+		display: none;
+		@media (max-width: 600px) {
+			display: block;
+		}
+	}
+	.yellowDivisor2 {
+		position: absolute;
+		bottom: -1px;
+		width: 100%;
+		left: 0;
+		right: 0;
+		@media (max-width: 600px) {
+			display: none;
+		}
+	}
+}
+
+.socialMediaBottom {
+	@include centerBox();
+	flex-wrap: nowrap;
+	margin: 20px auto;
+	img {
+		margin: 0 10px;
+	}
+}

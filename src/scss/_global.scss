@@ -39,7 +39,6 @@ p {
 
 .iconsBox {
 	width: 100%;
-	padding-top: 41px;
 	@include centerBox(space-around, center);
 	.logo {
 		@include centerBox(flex-start, center);
