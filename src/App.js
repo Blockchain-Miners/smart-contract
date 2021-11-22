@@ -157,7 +157,11 @@ function App() {
 							{' '}
 							<img src={discord} alt="Logo" />
 						</a>
-						<a href="#" target="_blank" rel="noreferrer">
+						<a
+							href="https://opensea.io/collection/blockchainminersclubofficial"
+							target="_blank"
+							rel="noreferrer"
+						>
 							{' '}
 							<img src={extraIcon} alt="Logo" />
 						</a>
@@ -289,7 +293,11 @@ function App() {
 					{' '}
 					<img src={discordWhite} alt="Logo" />
 				</a>
-				<a href="#" target="_blank" rel="noreferrer">
+				<a
+					href="https://opensea.io/collection/blockchainminersclubofficial"
+					target="_blank"
+					rel="noreferrer"
+				>
 					{' '}
 					<img src={opensea} alt="Logo" />
 				</a>
