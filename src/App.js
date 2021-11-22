@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
 import { connect } from './redux/blockchain/blockchainActions';
 import { fetchData } from './redux/data/dataActions';
+import { fetchMint } from './redux/mint/mintActions';
 import logo from './assets/bm-logo-64.png';
 import twitter from './assets/twitter-icon.png';
 import discord from './assets/discord.png';
@@ -111,6 +112,12 @@ function App() {
 		SET_CONFIG(config);
 	};
 
+	const getMint = () => {
+		if (blockchain.account !== '' && blockchain.smartContract !== null) {
+			dispatch(fetchMint(blockchain.account));
+		}
+	};
+
 	useEffect(() => {
 		getConfig();
 	}, []);
@@ -119,6 +126,10 @@ function App() {
 		getData();
 	}, [blockchain.account]);
 
+	useEffect(() => {
+		getMint();
+	}, [blockchain.account]);
+	console.log('data', data.presaleWhitelist);
 	return (
 		<>
 			<div className="homePage">
