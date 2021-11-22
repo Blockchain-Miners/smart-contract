@@ -1,7 +1,6 @@
 const initialState = {
 	loading: false,
 	presaleWhitelist: 0,
-	cost: 0,
 	error: false,
 	errorMsg: '',
 };
