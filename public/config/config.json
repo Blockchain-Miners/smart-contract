@@ -12,7 +12,7 @@
   "WEI_COST": 70000000000000000,
   "DISPLAY_COST": 0.07,
   "GAS_LIMIT": 500000,
-  "MARKETPLACE": "Opeansea",
+  "MARKETPLACE": "Opensea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/BlockchainMiners",
   "SHOW_BACKGROUND": true
 }

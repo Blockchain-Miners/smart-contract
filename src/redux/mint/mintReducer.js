@@ -18,8 +18,7 @@ const mintReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
-				presaleWhitelist: action.payload.presaleWhitelist,
-				// cost: action.payload.cost,
+				presaleWhitelist: action.payload.mintsAllowed,
 				error: false,
 				errorMsg: '',
 			};

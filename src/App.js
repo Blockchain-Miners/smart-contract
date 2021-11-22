@@ -22,7 +22,7 @@ function App() {
 	const dispatch = useDispatch();
 	const blockchain = useSelector((state) => state.blockchain);
 	const data = useSelector((state) => state.data);
-	const dataT = useSelector((state) => state.mint);
+	const dataT = useSelector((state) => state?.mint);
 	const [claimingNft, setClaimingNft] = useState(false);
 	const [feedback, setFeedback] = useState(`Presale Mint`);
 	const [mintAmount, setMintAmount] = useState(1);
@@ -130,7 +130,7 @@ function App() {
 	useEffect(() => {
 		getMint();
 	}, [blockchain.account]);
-	console.log('dataT', dataT);
+	console.log('dataT', dataT?.presaleWhitelist);
 
 	return (
 		<>
@@ -210,9 +210,7 @@ function App() {
 											</>
 										) : null}
 									</div>
-								) : dataT === 0 ? (
-									'No whitelist'
-								) : (
+								) : dataT?.presaleWhitelist >= 2 ? (
 									<div className="mintBox">
 										<h3>{feedback}</h3>
 
@@ -266,6 +264,8 @@ function App() {
 											</button>
 										</>
 									</div>
+								) : (
+									<h3 className="errorMint">You're not on the Whitelist.</h3>
 								)}
 							</>
 						)}

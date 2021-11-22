@@ -21,15 +21,14 @@ const fetchMintFailed = (payload) => {
 	};
 };
 
-export const fetchMint = () => {
+export const fetchMint = (account) => {
 	return async (dispatch) => {
 		dispatch(fetchMintRequest());
 		try {
 			let mintsAllowed = await store
 				.getState()
-				.blockchain.smartContract.methods.presaleWhitelist()
+				.blockchain.smartContract.methods.presaleWhitelist(account)
 				.call();
-			// .blockchain.smartContract.methods.presaleWhitelist(blockchain.account)
 			dispatch(
 				fetchMintSuccess({
 					mintsAllowed,
