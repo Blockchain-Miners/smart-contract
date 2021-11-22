@@ -220,7 +220,7 @@ function App() {
 												{data?.totalSupply} / {CONFIG?.MAX_SUPPLY}
 											</h2>
 											<div className="quantityBtns">
-												<button
+												<a
 													style={{ lineHeight: 0.4 }}
 													disabled={claimingNft ? 1 : 0}
 													onClick={(e) => {
@@ -229,12 +229,12 @@ function App() {
 													}}
 													className="quantityBtnMin"
 												>
-													<strong>-</strong>
-												</button>
+													-
+												</a>
 
 												<p className="amount">{mintAmount}</p>
 
-												<button
+												<a
 													disabled={claimingNft ? 1 : 0}
 													onClick={(e) => {
 														e.preventDefault();
@@ -243,7 +243,7 @@ function App() {
 													className="quantityBtn"
 												>
 													+
-												</button>
+												</a>
 											</div>
 										</div>
 

@@ -78,14 +78,17 @@
 					font-size: 40px;
 					text-align: center;
 					color: #000000;
+					background-color: #ffffff;
 					cursor: pointer;
-					strong {
-						margin-top: -5px;
-						height: 5px;
-						line-height: 0px;
-					}
+					@include centerBox();
+					// strong {
+					// 	margin-top: -5px;
+					// 	height: 5px;
+					// 	line-height: 0px;
+					// }
 				}
 				.quantityBtn {
+					@include centerBox();
 					border: none;
 					border-radius: 50%;
 					width: 50px;
@@ -96,6 +99,7 @@
 					text-align: center;
 					color: #000000;
 					cursor: pointer;
+					background-color: #ffffff;
 				}
 				.amount {
 					margin: 10px 50px;
