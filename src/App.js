@@ -266,7 +266,7 @@ function App() {
 										</>
 									</div>
 								) : (
-									<h3 className="errorMint">You're not on the Whitelist.</h3>
+									<h3 className="errorMint">Unable to Mint.</h3>
 								)}
 							</>
 						)}
