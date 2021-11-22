@@ -130,7 +130,7 @@ function App() {
 	useEffect(() => {
 		getMint();
 	}, [blockchain.account]);
-	console.log('dataT', dataT?.presaleWhitelist);
+	// console.log('dataT', dataT?.presaleWhitelist);
 
 	return (
 		<>
