@@ -13,7 +13,6 @@ import opensea from './assets/open-sea.png';
 import borderBottom from './assets/up-top-image.svg';
 import borderBottomT from './assets/up-top-image2.svg';
 import greenMiner from './assets/GreenMiner.png';
-// import axios from 'axios';
 
 // const truncate = (input, len) =>
 // 	input.length > len ? `${input.substring(0, len)}...` : input;
@@ -119,17 +118,6 @@ function App() {
 	useEffect(() => {
 		getData();
 	}, [blockchain.account]);
-
-	// useEffect(() => {
-	// 	axios
-	// 		.get(
-	// 			'https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,IOT&tsyms=USD'
-	// 		)
-	// 		.then((res) => {
-	// 			const cryptos = res.data;
-	// 			setCryptos({ cryptos: cryptos });
-	// 		});
-	// }, []);
 
 	return (
 		<>
@@ -271,18 +259,6 @@ function App() {
 
 				<img src={borderBottom} alt="border" className="yellowDivisor" />
 				<img src={borderBottomT} alt="border" className="yellowDivisor2" />
-
-				{/* <p>
-				Please make sure you are connected to the right network (
-				{CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-				Once you make the purchase, you cannot undo this action.
-			</p>
-
-			<p>
-				We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-				successfully mint your NFT. We recommend that you don't lower the gas
-				limit.
-			</p> */}
 			</div>
 			<div className="socialMediaBottom">
 				<a href="https://twitter.com/BMC_NFT" target="_blank" rel="noreferrer">
