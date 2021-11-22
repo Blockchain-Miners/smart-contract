@@ -176,7 +176,7 @@ function App() {
 							{/* <a className="connectBtn">Connect wallet</a> */}
 						</div>
 
-						{Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+						{Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
 							<>
 								<p>The sale has ended.</p>
 								<p>You can still find {CONFIG.NFT_NAME} on</p>
@@ -210,13 +210,14 @@ function App() {
 											</>
 										) : null}
 									</div>
-								) : dataT?.presaleWhitelist >= 2 ? (
+								) : dataT?.presaleWhitelist === undefined ||
+								  dataT?.presaleWhitelist >= 1 ? (
 									<div className="mintBox">
 										<h3>{feedback}</h3>
 
 										<div>
 											<h2 className="totalSupply">
-												{data.totalSupply} / {CONFIG.MAX_SUPPLY}
+												{data?.totalSupply} / {CONFIG?.MAX_SUPPLY}
 											</h2>
 											<div className="quantityBtns">
 												<button
