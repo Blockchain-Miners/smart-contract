@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Web3 from 'web3';
-import Web3EthContract from 'web3-eth-contract';
 import './App.scss';
 import { connect } from './redux/blockchain/blockchainActions';
 import { fetchData } from './redux/data/dataActions';
@@ -16,10 +14,6 @@ import opensea from './assets/open-sea.png';
 import borderBottom from './assets/up-top-image.svg';
 import borderBottomT from './assets/up-top-image2.svg';
 import greenMiner from './assets/GreenMiner.png';
-import axios from 'axios';
-
-// const truncate = (input, len) =>
-// 	input.length > len ? `${input.substring(0, len)}...` : input;
 
 function App() {
 	const dispatch = useDispatch();
@@ -29,7 +23,6 @@ function App() {
 	const [claimingNft, setClaimingNft] = useState(false);
 	const [feedback, setFeedback] = useState(`Presale Mint`);
 	const [mintAmount, setMintAmount] = useState(1);
-	// const [cryptos, setCryptos] = useState();
 	const [CONFIG, SET_CONFIG] = useState({
 		CONTRACT_ADDRESS: '',
 		SCAN_LINK: '',
@@ -138,21 +131,6 @@ function App() {
 	useEffect(() => {
 		getMint();
 	}, [blockchain.account]);
-
-	// const [newAbi, setNewabi] = useState();
-
-	// useEffect(() => {
-	// 	axios('/config/abi.json')
-	// 		.then((res) => setNewabi(res.data))
-	// 		.catch((err) => console.log(err));
-	// }, []);
-
-	// console.log('test1', blockchain.smartContract);
-	// console.log('test2', mints);
-	// console.log('test3', blockchain.account);
-	// console.log('test5', newAbi);
-
-	// console.log('test5', SmartContractObj);
 
 	return (
 		<>
