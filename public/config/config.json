@@ -1,18 +1,17 @@
 {
-  "CONTRACT_ADDRESS": "0x47Bd71b482B27eBDb57af6e372cab46c7280bf44",
-  "SCAN_LINK": "https://etherscan.io/address/0x47bd71b482b27ebdb57af6e372cab46c7280bf44",
+  "CONTRACT_ADDRESS": "0xA145df8784dC94F7ecA16027FB2cAEa915F3926a",
+  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0xA145df8784dC94F7ecA16027FB2cAEa915F3926a",
   "NETWORK": {
-    "NAME": "Ethereum Mainnet",
+    "NAME": "Rinkeby",
     "SYMBOL": "ETH",
-    "ID": 1
+    "ID": 4
   },
-  "NFT_NAME": "Blockchain_Miners_Club",
+  "NFT_NAME": "Blockchain Miners",
   "SYMBOL": "BMC",
   "MAX_SUPPLY": 11111,
   "WEI_COST": 70000000000000000,
   "DISPLAY_COST": 0.07,
-  "GAS_LIMIT": 250000,
   "MARKETPLACE": "Opensea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/Blockchain_Miners_Club",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/BlockchainMiners",
   "SHOW_BACKGROUND": true
 }
