@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import NumberFormat from 'react-number-format';
 import './App.scss';
 import { connect } from './redux/blockchain/blockchainActions';
 import { fetchData } from './redux/data/dataActions';
@@ -46,11 +47,10 @@ function App() {
 		let cost = CONFIG.WEI_COST;
 		let gasLimit = CONFIG.GAS_LIMIT;
 		let totalCostWei = String(cost * mintAmount);
-		let totalGasLimit = Math.floor(
-			(await blockchain.smartContract.methods
-				.mint(mintAmount)
-				.estimateGas({ from: blockchain.account, value: totalCostWei })) * 1.25
-		);
+		let totalGasLimited = await blockchain.smartContract.methods
+			.mint(mintAmount)
+			.estimateGas({ from: blockchain.account, value: totalCostWei });
+		let totalGasLimit = Math.floor(parseInt(totalGasLimited * 1.2));
 		console.log('Cost: ', totalCostWei);
 		console.log('Gas limit: ', totalGasLimit);
 		setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
@@ -179,7 +179,7 @@ function App() {
 							<img src={greenMiner} alt="Green Miner" />
 						</div>
 
-						{Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+						{/* {Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
 							<>
 								<p>The sale has ended.</p>
 								<p>You can still find {CONFIG.NFT_NAME} on</p>
@@ -220,7 +220,17 @@ function App() {
 
 										<div>
 											<h2 className="totalSupply">
-												{data?.totalSupply} / {CONFIG?.MAX_SUPPLY}
+												<NumberFormat
+													value={data?.totalSupply}
+													displayType={'text'}
+													thousandSeparator={true}
+												/>
+												/
+												<NumberFormat
+													value={CONFIG?.MAX_SUPPLY}
+													displayType={'text'}
+													thousandSeparator={true}
+												/>
 											</h2>
 											<div className="quantityBtns">
 												<a
@@ -272,7 +282,7 @@ function App() {
 									<h3 className="errorMint">Unable to Mint.</h3>
 								)}
 							</>
-						)}
+						)} */}
 					</div>
 				</div>
 
