@@ -179,7 +179,7 @@ function App() {
 							<img src={greenMiner} alt="Green Miner" />
 						</div>
 
-						{Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+						{/* {Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
 							<>
 								<p>The sale has ended.</p>
 								<p>You can still find {CONFIG.NFT_NAME} on</p>
@@ -282,7 +282,7 @@ function App() {
 									<h3 className="errorMint">Unable to Mint.</h3>
 								)}
 							</>
-						)}
+						)} */}
 					</div>
 				</div>
 
