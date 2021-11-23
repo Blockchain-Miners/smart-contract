@@ -15,9 +15,6 @@ import borderBottom from './assets/up-top-image.svg';
 import borderBottomT from './assets/up-top-image2.svg';
 import greenMiner from './assets/GreenMiner.png';
 
-// const truncate = (input, len) =>
-// 	input.length > len ? `${input.substring(0, len)}...` : input;
-
 function App() {
 	const dispatch = useDispatch();
 	const blockchain = useSelector((state) => state.blockchain);
@@ -26,7 +23,6 @@ function App() {
 	const [claimingNft, setClaimingNft] = useState(false);
 	const [feedback, setFeedback] = useState(`Presale Mint`);
 	const [mintAmount, setMintAmount] = useState(1);
-	// const [cryptos, setCryptos] = useState();
 	const [CONFIG, SET_CONFIG] = useState({
 		CONTRACT_ADDRESS: '',
 		SCAN_LINK: '',
@@ -46,15 +42,20 @@ function App() {
 		SHOW_BACKGROUND: false,
 	});
 
-	const claimNFTs = () => {
+	const claimNFTs = async () => {
 		let cost = CONFIG.WEI_COST;
 		let gasLimit = CONFIG.GAS_LIMIT;
 		let totalCostWei = String(cost * mintAmount);
-		let totalGasLimit = String(gasLimit * mintAmount);
+		let totalGasLimit = Math.floor(
+			(await blockchain.smartContract.methods
+				.mint(mintAmount)
+				.estimateGas({ from: blockchain.account, value: totalCostWei })) * 1.25
+		);
 		console.log('Cost: ', totalCostWei);
 		console.log('Gas limit: ', totalGasLimit);
 		setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
 		setClaimingNft(true);
+		blockchain.smartContract.methods.mint(mintAmount);
 		blockchain.smartContract.methods
 			.mint(mintAmount)
 			.send({
@@ -96,12 +97,6 @@ function App() {
 		setMintAmount(newMintAmount);
 	};
 
-	const getData = () => {
-		if (blockchain.account !== '' && blockchain.smartContract !== null) {
-			dispatch(fetchData(blockchain.account));
-		}
-	};
-
 	const getConfig = async () => {
 		const configResponse = await fetch('/config/config.json', {
 			headers: {
@@ -111,6 +106,12 @@ function App() {
 		});
 		const config = await configResponse.json();
 		SET_CONFIG(config);
+	};
+
+	const getData = () => {
+		if (blockchain.account !== '' && blockchain.smartContract !== null) {
+			dispatch(fetchData(blockchain.account));
+		}
 	};
 
 	const getMint = () => {
@@ -130,7 +131,6 @@ function App() {
 	useEffect(() => {
 		getMint();
 	}, [blockchain.account]);
-	console.log('dataT', dataT?.presaleWhitelist);
 
 	return (
 		<>
@@ -157,7 +157,11 @@ function App() {
 							{' '}
 							<img src={discord} alt="Logo" />
 						</a>
-						<a href="#" target="_blank" rel="noreferrer">
+						<a
+							href="https://opensea.io/collection/blockchainminersclubofficial"
+							target="_blank"
+							rel="noreferrer"
+						>
 							{' '}
 							<img src={extraIcon} alt="Logo" />
 						</a>
@@ -173,7 +177,6 @@ function App() {
 						</p>
 						<div className="blueMiner">
 							<img src={greenMiner} alt="Green Miner" />
-							{/* <a className="connectBtn">Connect wallet</a> */}
 						</div>
 
 						{Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
@@ -289,7 +292,11 @@ function App() {
 					{' '}
 					<img src={discordWhite} alt="Logo" />
 				</a>
-				<a href="#" target="_blank" rel="noreferrer">
+				<a
+					href="https://opensea.io/collection/blockchainminersclubofficial"
+					target="_blank"
+					rel="noreferrer"
+				>
 					{' '}
 					<img src={opensea} alt="Logo" />
 				</a>
