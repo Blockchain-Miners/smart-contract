@@ -50,7 +50,7 @@ function App() {
 		let totalGasLimited = await blockchain.smartContract.methods
 			.mint(mintAmount)
 			.estimateGas({ from: blockchain.account, value: totalCostWei });
-		let totalGasLimit = Math.floor(parseInt(totalGasLimited * 1.2));
+		let totalGasLimit = Math.floor(parseInt(totalGasLimited * 1.3));
 		console.log('Cost: ', totalCostWei);
 		console.log('Gas limit: ', totalGasLimit);
 		setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
@@ -66,9 +66,7 @@ function App() {
 			})
 			.once('error', (err) => {
 				console.log(err);
-				setFeedback(
-					'You do not have enough presale mints or you are not whitelisted.'
-				);
+				setFeedback('Error minting please contact admin.');
 				setClaimingNft(false);
 			})
 			.then((receipt) => {
@@ -91,8 +89,8 @@ function App() {
 
 	const incrementMintAmount = () => {
 		let newMintAmount = mintAmount + 1;
-		if (newMintAmount > 3) {
-			newMintAmount = 3;
+		if (newMintAmount > 8) {
+			newMintAmount = 8;
 		}
 		setMintAmount(newMintAmount);
 	};
@@ -179,7 +177,7 @@ function App() {
 							<img src={greenMiner} alt="Green Miner" />
 						</div>
 
-						{/* {Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+						{Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
 							<>
 								<p>The sale has ended.</p>
 								<p>You can still find {CONFIG.NFT_NAME} on</p>
@@ -213,8 +211,7 @@ function App() {
 											</>
 										) : null}
 									</div>
-								) : dataT?.presaleWhitelist === undefined ||
-								  dataT?.presaleWhitelist >= 1 ? (
+								) : (
 									<div className="mintBox">
 										<h3>{feedback}</h3>
 
@@ -227,7 +224,7 @@ function App() {
 												/>
 												/
 												<NumberFormat
-													value={CONFIG?.MAX_SUPPLY}
+													value={11111}
 													displayType={'text'}
 													thousandSeparator={true}
 												/>
@@ -278,11 +275,9 @@ function App() {
 											</button>
 										</>
 									</div>
-								) : (
-									<h3 className="errorMint">Unable to Mint.</h3>
 								)}
 							</>
-						)} */}
+						)}
 					</div>
 				</div>
 
