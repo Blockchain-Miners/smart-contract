@@ -22,7 +22,7 @@ function App() {
 	const data = useSelector((state) => state.data);
 	const dataT = useSelector((state) => state?.mint);
 	const [claimingNft, setClaimingNft] = useState(false);
-	const [feedback, setFeedback] = useState(`Presale Mint`);
+	const [feedback, setFeedback] = useState(`Public Mint`);
 	const [mintAmount, setMintAmount] = useState(1);
 	const [CONFIG, SET_CONFIG] = useState({
 		CONTRACT_ADDRESS: '',
