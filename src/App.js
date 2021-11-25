@@ -214,66 +214,71 @@ function App() {
 								) : (
 									<div className="mintBox">
 										<h3>{feedback}</h3>
+										{data?.totalSupply === data?.totalSupply ? (
+											<>
+												{' '}
+												<div>
+													<h2 className="totalSupply">
+														<NumberFormat
+															value={data?.totalSupply}
+															displayType={'text'}
+															thousandSeparator={true}
+														/>
+														/
+														<NumberFormat
+															value={11111}
+															displayType={'text'}
+															thousandSeparator={true}
+														/>
+													</h2>
+													<div className="quantityBtns">
+														<a
+															style={{ lineHeight: 0.4 }}
+															disabled={claimingNft ? 1 : 0}
+															onClick={(e) => {
+																e.preventDefault();
+																decrementMintAmount();
+															}}
+															className="quantityBtnMin"
+														>
+															-
+														</a>
 
-										<div>
-											<h2 className="totalSupply">
-												<NumberFormat
-													value={data?.totalSupply}
-													displayType={'text'}
-													thousandSeparator={true}
-												/>
-												/
-												<NumberFormat
-													value={11111}
-													displayType={'text'}
-													thousandSeparator={true}
-												/>
-											</h2>
-											<div className="quantityBtns">
-												<a
-													style={{ lineHeight: 0.4 }}
-													disabled={claimingNft ? 1 : 0}
-													onClick={(e) => {
-														e.preventDefault();
-														decrementMintAmount();
-													}}
-													className="quantityBtnMin"
-												>
-													-
-												</a>
+														<p className="amount">{mintAmount}</p>
 
-												<p className="amount">{mintAmount}</p>
-
-												<a
-													disabled={claimingNft ? 1 : 0}
-													onClick={(e) => {
-														e.preventDefault();
-														incrementMintAmount();
-													}}
-													className="quantityBtn"
-												>
-													+
-												</a>
-											</div>
-										</div>
-
-										<>
-											<h5>
-												{(CONFIG.DISPLAY_COST * mintAmount).toFixed(2)}{' '}
-												{CONFIG.NETWORK.SYMBOL} + GAS
-											</h5>
-											<button
-												disabled={claimingNft ? 8 : 0}
-												onClick={(e) => {
-													e.preventDefault();
-													claimNFTs();
-													getData();
-												}}
-												className="btnMint"
-											>
-												{claimingNft ? 'BUSY' : 'Mint'}
-											</button>
-										</>
+														<a
+															disabled={claimingNft ? 1 : 0}
+															onClick={(e) => {
+																e.preventDefault();
+																incrementMintAmount();
+															}}
+															className="quantityBtn"
+														>
+															+
+														</a>
+													</div>
+												</div>
+												<>
+													<h5>
+														{(CONFIG.DISPLAY_COST * mintAmount).toFixed(2)}{' '}
+														{CONFIG.NETWORK.SYMBOL} + GAS
+													</h5>
+													<button
+														disabled={claimingNft ? 8 : 0}
+														onClick={(e) => {
+															e.preventDefault();
+															claimNFTs();
+															getData();
+														}}
+														className="btnMint"
+													>
+														{claimingNft ? 'BUSY' : 'Mint'}
+													</button>
+												</>{' '}
+											</>
+										) : (
+											<h2 className="soldOut">Sold Out!!</h2>
+										)}
 									</div>
 								)}
 							</>
