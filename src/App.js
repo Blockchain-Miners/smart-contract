@@ -51,8 +51,8 @@ function App() {
 			.mint(mintAmount)
 			.estimateGas({ from: blockchain.account, value: totalCostWei });
 		let totalGasLimit = Math.floor(parseInt(totalGasLimited * 1.3));
-		console.log('Cost: ', totalCostWei);
-		console.log('Gas limit: ', totalGasLimit);
+		// console.log('Cost: ', totalCostWei);
+		// console.log('Gas limit: ', totalGasLimit);
 		setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
 		setClaimingNft(true);
 		blockchain.smartContract.methods.mint(mintAmount);
@@ -130,6 +130,11 @@ function App() {
 		getMint();
 	}, [blockchain.account]);
 
+	console.log('data', blockchain.account);
+
+	const imgTest =
+		'ipfs://d4e9ccb508586d0526e19e42abdede261ca79205312220bcece4f2d7c9e2725f';
+
 	return (
 		<>
 			<div className="homePage">
@@ -162,6 +167,7 @@ function App() {
 						>
 							{' '}
 							<img src={extraIcon} alt="Logo" />
+							<image src={imgTest} alt="test" />
 						</a>
 					</div>
 				</div>
