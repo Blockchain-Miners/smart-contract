@@ -92,11 +92,11 @@ export default function Home() {
 
 	const SimpleSlider = () => (
 		<Slider
-			autoplay={true}
-			duration={7500}
+			// autoplay={true}
+			// duration={7500}
 			slidesPerRow={5}
-			overScan={7}
-			autoplayScroll={1}
+			// overScan={7}
+			// autoplayScroll={1}
 			arrows={false}
 		>
 			<div>
@@ -116,43 +116,16 @@ export default function Home() {
 			</div>
 			<div>
 				<img src={slide6} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide7} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide8} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide9} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide10} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide11} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide12} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide10} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide11} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide12} alt="Miner image" />
 			</div>
 		</Slider>
 	);
 	const SimpleSlider2 = () => (
 		<Slider
-			autoplay={true}
-			duration={7000}
+			// autoplay={true}
+			// duration={7000}
 			slidesPerRow={5}
-			overScan={7}
-			autoplayScroll={1}
+			// overScan={7}
+			// autoplayScroll={1}
 			arrows={false}
 		>
 			<div>
@@ -172,33 +145,6 @@ export default function Home() {
 			</div>
 			<div>
 				<img src={slide12} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide1} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide2} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide3} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide4} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide5} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide6} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide1} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide2} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide10} alt="Miner image" />
 			</div>
 		</Slider>
 	);
@@ -206,11 +152,11 @@ export default function Home() {
 	// mobile
 	const SimpleSliderM = () => (
 		<Slider
-			autoplay={true}
-			duration={7500}
+			// autoplay={true}
+			// duration={7500}
 			slidesPerRow={3}
-			overScan={7}
-			autoplayScroll={1}
+			// overScan={7}
+			// autoplayScroll={1}
 			arrows={false}
 		>
 			<div>
@@ -230,43 +176,16 @@ export default function Home() {
 			</div>
 			<div>
 				<img src={slide6M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide7M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide8M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide9M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide10M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide11M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide12M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide10M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide11M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide12M} alt="Miner image" />
 			</div>
 		</Slider>
 	);
 	const SimpleSlider2M = () => (
 		<Slider
-			autoplay={true}
-			duration={9000}
+			// autoplay={true}
+			// duration={9000}
 			slidesPerRow={3}
-			overScan={7}
-			autoplayScroll={1}
+			// overScan={7}
+			// autoplayScroll={1}
 			arrows={false}
 		>
 			<div>
@@ -286,33 +205,6 @@ export default function Home() {
 			</div>
 			<div>
 				<img src={slide12M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide1M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide2M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide3M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide4M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide5M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide6M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide1M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide2M} alt="Miner image" />
-			</div>
-			<div>
-				<img src={slide10M} alt="Miner image" />
 			</div>
 		</Slider>
 	);
