@@ -3,7 +3,7 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 
 import Navigation from '../blockComponent/Navigation';
 import Slider from 'infinite-react-carousel';
-import { connect } from '../../redux/blockchain/blockchainActions';
+// import { connect } from '../../redux/blockchain/blockchainActions';
 import { fetchData } from '../../redux/data/dataActions';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,10 +19,15 @@ import gem from '../../assets/desktop/gem.png';
 import abstract from '../../assets/desktop/abstract.png';
 import organic from '../../assets/desktop/organic.png';
 import cyber from '../../assets/desktop/cyber.png';
+import julian from '../../assets/Julian.jpg';
+import brandon from '../../assets/brandon.jpg';
+import pat from '../../assets/pat.jpg';
+import mike from '../../assets/Mike.jpg';
+import ed from '../../assets/Ed.jpg';
+import mai from '../../assets/mai.jpg';
 
 // mobile images
 import minerLogo from '../../assets/bm-logo-64.png';
-import ourMinerM from '../../assets/mobile/ourMiner.png';
 import earnTokenM from '../../assets/mobile/earn-token.png';
 import hashTokenM from '../../assets/mobile/hash.png';
 import burningGraphicM from '../../assets/mobile/burning-graphic.png';
@@ -353,9 +358,9 @@ export default function Home() {
 							<img src={bmcLogo} alt="BMC Logo" className="bmcLogo" />
 
 							<div className="righBoxTop">
-								<Navigation />
-								<div className="hashDisplay">
-									{/* {blockchain.account === '' ||
+								{/* <Navigation /> */}
+								{/* <div className="hashDisplay"> */}
+								{/* {blockchain.account === '' ||
 							blockchain.smartContract === null ? (
 								<div className="connectBox">
 									<button
@@ -377,8 +382,8 @@ export default function Home() {
 							) : (
 								<h3>$HASH {hashDisplay}</h3>
 								)} */}
-									<h3>$HASH {hashDisplay}</h3>
-								</div>
+								{/* <h3>$HASH {hashDisplay}</h3> */}
+								{/* </div> */}
 							</div>
 						</div>
 						<div className="headerBoxBottom">
@@ -520,6 +525,54 @@ export default function Home() {
 							<strong>April 4th, 2022</strong>. BMC VENTURES INC. has dedicated
 							1,500,000 GH/s towards this program.
 						</p>
+					</div>
+					<div className="theDreamTeam">
+						<h2>THE DREAM TEAM</h2>
+
+						<div className="teamBox">
+							<figure>
+								<img src={brandon} alt="Brandon Cataneda" />
+								<figcaption>
+									<h3>brandonprofits</h3>
+									<p>Brandon Castaneda | Founder</p>
+								</figcaption>
+							</figure>
+							<figure>
+								<img src={pat} alt="Patrick Miller" />
+								<figcaption>
+									<h3>patspeakseasy</h3>
+									<p>Patrick Miller | Partner</p>
+								</figcaption>
+							</figure>
+							<figure>
+								<img src={mike} alt="Mike Jalonen" />
+								<figcaption>
+									<h3>mikejlucky</h3>
+									<p>Mike Jalonen | COO</p>
+								</figcaption>
+							</figure>
+							<figure>
+								<img src={ed} alt="Ed Dinzole" />
+								<figcaption className="edClassBox">
+									<h3 className="edClass">bmxskateboardsrollersblades</h3>
+									<p>Ed Dinzole | Artist</p>
+								</figcaption>
+							</figure>
+							<figure>
+								<img src={mai} alt="Chris" />
+								<figcaption>
+									<h3>mai</h3>
+									<p>Chris | Smart Contractor Dev</p>
+								</figcaption>
+							</figure>
+							<figure>
+								<img src={julian} alt="Julian Moreno" />
+								<figcaption>
+									<h3>Julmo611</h3>
+									<p>Julian Moreno | Frontend Dev</p>
+								</figcaption>
+							</figure>
+						</div>
 					</div>
 					<Footer />
 				</div>

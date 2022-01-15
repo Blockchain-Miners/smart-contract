@@ -369,4 +369,71 @@
 			}
 		}
 	}
+	.theDreamTeam {
+		h2 {
+			text-align: center;
+			@media (max-width: 600px) {
+				font-size: 32px;
+			}
+		}
+		.teamBox {
+			@include centerBox(space-evenly, center);
+			max-width: 1000px;
+			margin: 50px auto;
+			figure {
+				position: relative;
+				margin-bottom: 60px;
+				img {
+					border-radius: 16px;
+					max-width: 400px;
+					height: auto;
+					z-index: 1;
+					@media (max-width: 600px) {
+						max-width: 255px;
+					}
+				}
+				figcaption {
+					z-index: 2;
+					position: absolute;
+					background-color: $blackColor;
+					color: $color1;
+					width: 321px;
+					bottom: -30px;
+					left: 44px;
+					border-radius: 16px;
+					padding: 10px 5px;
+					@media (max-width: 600px) {
+						width: 202px;
+						bottom: -20px;
+						left: 30px;
+						&.edClassBox {
+							left: 10px;
+							width: 235px;
+						}
+					}
+					h3 {
+						font-size: 26px;
+						text-align: center;
+						margin-bottom: 5px;
+						&.edClass {
+							font-size: 16px;
+						}
+						@media (max-width: 600px) {
+							font-size: 20px;
+							&.edClass {
+								font-size: 12px;
+							}
+						}
+					}
+					p {
+						font-size: 21px;
+						text-align: center;
+						@media (max-width: 600px) {
+							font-size: 12px;
+						}
+					}
+				}
+			}
+		}
+	}
 }

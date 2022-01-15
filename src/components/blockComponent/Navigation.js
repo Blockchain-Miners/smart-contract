@@ -8,11 +8,7 @@ export default function Navigation() {
 	return (
 		<>
 			{isdesktop ? (
-				<nav>
-					<NavLink to="/burn">
-						<img src={burnImg} alt="Burn" />
-					</NavLink>
-				</nav>
+				''
 			) : (
 				<nav>
 					<NavLink to="/burn">
