@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import blockchainReducer from './blockchain/blockchainReducer';
