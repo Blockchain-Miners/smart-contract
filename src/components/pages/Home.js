@@ -67,9 +67,9 @@ import Footer from '../blockComponent/Footer';
 
 export default function Home() {
 	const btcTotal = '2.06';
-	const btcDollar = '$88,705';
-	const ethTotal = '44.51';
-	const ethDollar = '$146,500';
+	const btcDollar = '$88,838';
+	const ethTotal = '44';
+	const ethDollar = '$146,396';
 
 	const hashDisplay = '9,410';
 
