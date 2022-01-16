@@ -415,7 +415,7 @@ export default function Home() {
 						<p>
 							<strong>$HASH</strong> token for Hashpower program starts{' '}
 							<strong>April 4th, 2022</strong>. BMC VENTURES INC. has dedicated
-							1,500,000 GH/s towards this program.
+							1,500,000 GH/s towards this program
 						</p>
 					</div>
 					<div className="theDreamTeam">
