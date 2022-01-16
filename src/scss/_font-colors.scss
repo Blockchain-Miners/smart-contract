@@ -1,10 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@font-face {
+	font-family: 'Chicken Crispy Regular';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Chicken Crispy Regular'),
+		url('../font/ChickenCrispy-YzBe2.woff') format('woff');
+}
 
-$fontFamily: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+
+$fontFamily: 'Nunito Sans', sans-serif;
+$titleFont: 'Chicken Crispy Regular';
 
 $color1: #faff11;
 $color2: #c0c0c0;
 
-$bgColor: #191919;
-$bgColor2: #414141;
+$bgColor: #000000;
+$bgColor2: #d8d8d8;
 $blackColor: #000000;

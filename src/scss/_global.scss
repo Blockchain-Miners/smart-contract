@@ -2,6 +2,8 @@
 *::before,
 *::after {
 	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 /* Set core body defaults */
@@ -17,24 +19,21 @@ a {
 }
 
 h2 {
-	font-size: 30px;
-	font-weight: bold;
-	font-size: 30px;
+	font-size: 78px;
+	font-weight: normal;
+	font-family: $titleFont;
+}
+
+h3 {
+	font-size: 36px;
+	font-weight: normal;
+	font-family: $titleFont;
 }
 
 p {
-	font-size: 18px;
+	font-size: 32px;
 	font-weight: 400;
 	font-family: $fontFamily !important;
-	color: $color2;
-	line-height: 27px;
-	@media (max-width: 400px) {
-		font-size: 16px;
-	}
-	strong {
-		color: white;
-		font-weight: 600;
-	}
 }
 
 .iconsBox {
@@ -50,6 +49,7 @@ p {
 			margin-left: 20px;
 			font-style: normal;
 			font-weight: bold;
+			font-family: $titleFont;
 			font-size: 30px;
 			line-height: 45px;
 			@media (max-width: 600px) {
@@ -68,4 +68,11 @@ p {
 
 .errorMint {
 	text-align: center;
+}
+
+.mainContainer {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1500px;
+	background-color: $color1;
 }
