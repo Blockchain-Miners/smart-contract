@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
-import Navigation from '../blockComponent/Navigation';
 import Slider from 'infinite-react-carousel';
-// import { connect } from '../../redux/blockchain/blockchainActions';
+import { connect } from '../../redux/blockchain/blockchainActions';
 import { fetchData } from '../../redux/data/dataActions';
+import { NavLink } from 'react-router-dom';
+import burnImg from '../../assets/BURN.png';
+
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -66,6 +68,7 @@ import slide12M from '../../assets/mobile/12.png';
 import Footer from '../blockComponent/Footer';
 
 export default function Home() {
+	// Temporary manul variables
 	const btcTotal = '2.06';
 	const btcDollar = '$88,838';
 	const ethTotal = '44';
@@ -73,7 +76,12 @@ export default function Home() {
 
 	const hashDisplay = '9,410';
 
+	// query by function
+	const isdesktop = useMediaQuery('(max-width: 600px)');
+
+	//  Redux to read contract
 	const blockchain = useSelector((state) => state.blockchain);
+
 	const dispatch = useDispatch();
 
 	const getData = () => {
@@ -87,6 +95,7 @@ export default function Home() {
 
 	useEffect(() => {
 		getData();
+
 		setTimeout(() => setLoading(false), 1000);
 	}, [blockchain.account]);
 
@@ -209,7 +218,6 @@ export default function Home() {
 		</Slider>
 	);
 
-	const isdesktop = useMediaQuery('(max-width: 600px)');
 	return (
 		<>
 			{loading === false ? (
@@ -218,30 +226,29 @@ export default function Home() {
 						<div className="righBoxTop">
 							<img src={minerLogo} alt="BMC Logo" className="bmcLogo" />
 							<div className="hashDisplay">
-								{/* {blockchain.account === '' ||
-							blockchain.smartContract === null ? (
-								<div className="connectBox">
-									<button
-										className="btnConnect"
-										onClick={(e) => {
-											e.preventDefault();
-											dispatch(connect());
-											getData();
-										}}
-									>
-										Connect wallet
-									</button>
-									{blockchain.errorMsg !== '' ? (
-										<>
-											<h4>{blockchain.errorMsg}</h4>
-										</>
-									) : null}
-								</div>
-							) : (
+								{blockchain.account === '' ||
+								blockchain.smartContract === null ? (
+									<div className="connectBox">
+										<button
+											className="btnConnect"
+											onClick={(e) => {
+												e.preventDefault();
+												dispatch(connect());
+												getData();
+											}}
+										>
+											Connect wallet
+										</button>
+										{blockchain.errorMsg !== '' ? (
+											<>
+												<h4>{blockchain.errorMsg}</h4>
+											</>
+										) : null}
+									</div>
+								) : (
+									<h3>$HASH {hashDisplay}</h3>
+								)}
 								<h3>$HASH {hashDisplay}</h3>
-								)} */}
-								<h3>$HASH {hashDisplay}</h3>
-								<Navigation />
 							</div>
 						</div>
 					</div>
@@ -250,32 +257,39 @@ export default function Home() {
 							<img src={bmcLogo} alt="BMC Logo" className="bmcLogo" />
 
 							<div className="righBoxTop">
-								{/* <Navigation /> */}
-								{/* <div className="hashDisplay"> */}
-								{/* {blockchain.account === '' ||
-							blockchain.smartContract === null ? (
-								<div className="connectBox">
-									<button
-										className="btnConnect"
-										onClick={(e) => {
-											e.preventDefault();
-											dispatch(connect());
-											getData();
-										}}
-									>
-										Connect wallet
-									</button>
-									{blockchain.errorMsg !== '' ? (
-										<>
-											<h4>{blockchain.errorMsg}</h4>
-										</>
-									) : null}
+								<nav>
+									<NavLink to="/burn">
+										<img src={burnImg} alt="Burn" />
+									</NavLink>
+								</nav>
+
+								<div className="hashDisplay">
+									{blockchain.account === '' ||
+									blockchain.smartContract === null ? (
+										<div className="connectBox">
+											<button
+												className="btnConnect"
+												onClick={(e) => {
+													e.preventDefault();
+													dispatch(connect());
+													getData();
+												}}
+											>
+												<h3>Connect wallet</h3>
+											</button>
+											{blockchain.errorMsg !== '' ? (
+												<>
+													<h4>{blockchain.errorMsg}</h4>
+												</>
+											) : (
+												''
+											)}
+										</div>
+									) : (
+										// <h3>$HASH {hashDisplay}</h3>
+										<h3>Connected</h3>
+									)}
 								</div>
-							) : (
-								<h3>$HASH {hashDisplay}</h3>
-								)} */}
-								{/* <h3>$HASH {hashDisplay}</h3> */}
-								{/* </div> */}
 							</div>
 						</div>
 						<div className="headerBoxBottom">
@@ -415,7 +429,7 @@ export default function Home() {
 						<p>
 							<strong>$HASH</strong> token for Hashpower program starts{' '}
 							<strong>April 4th, 2022</strong>. BMC VENTURES INC. has dedicated
-							1,500,000 GH/s towards this program
+							1,500,000 GH/s towards this program.
 						</p>
 					</div>
 					<div className="theDreamTeam">

@@ -20,6 +20,13 @@
 					color: white;
 					font-size: 16px;
 				}
+				.connectBox {
+					font-size: 24px;
+					.btnConnect {
+						background-color: black !important;
+						border: none;
+					}
+				}
 			}
 		}
 	}
@@ -49,6 +56,17 @@
 					h3 {
 						color: white;
 					}
+					.connectBox {
+						font-size: 24px;
+						.btnConnect {
+							background-color: black !important;
+							border: none;
+							color: white;
+							h3 {
+								font-size: 24px;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -63,6 +81,8 @@
 				width: 100%;
 				max-width: 447px;
 				margin: 0 auto;
+				text-align: center;
+				display: flex;
 				@media (max-width: 600px) {
 					max-width: 202px;
 					display: block;

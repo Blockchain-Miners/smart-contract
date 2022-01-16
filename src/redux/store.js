@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import blockchainReducer from './blockchain/blockchainReducer';
 import dataReducer from './data/dataReducer';
-import mintReducer from './mint/mintReducer';
+import mintReducer from './whiteList/mintReducer';
 
 const rootReducer = combineReducers({
 	blockchain: blockchainReducer,
