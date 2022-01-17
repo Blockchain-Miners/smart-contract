@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 /**
  * TODO
  * connect burn with smart contract
- * select all, deselect all
  */
 
 const BurnWindow = (props) => {
@@ -12,32 +11,23 @@ const BurnWindow = (props) => {
 
   return (
     <div className='headerOutsideBox'>
-      <p className='headerBoxTitle'>Select Miners to Burn</p>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          width: '100%',
-          overflow: 'scroll',
-          overflowY: 'auto',
-          height: 'calc(100% - 25px)',
-          overflowX: 'hidden',
-          backgroundColor: 'rgba(0,0,0,0.7)',
-          border: '2px solid yellow',
-        }}
-      >
+      <div id='burnWindowHeader'>
+        <p id='burnWindowHeaderTitle'>Select Miners to Burn</p>
+        <p
+          className='burnWindowHeaderUtil'
+          onClick={() => setSelectedMiners(tokenData.map((token) => `${token.token_id}`))}
+        >
+          Select All
+        </p>
+        <p className='burnWindowHeaderUtil' onClick={() => setSelectedMiners([])}>
+          Clear All
+        </p>
+      </div>
+      <div id='burnWindowMiners'>
         {tokenData.map((token) => (
           <div
             key={token.token_id}
-            style={{
-              margin: '5px',
-              height: '210px',
-              width: '210px',
-              position: 'relative',
-              cursor: 'pointer',
-            }}
+            className='burnWindowMiner'
             onClick={() => {
               if (selectedMiners.includes(token.token_id)) {
                 setSelectedMiners((prev) => prev.filter((val) => token.token_id !== val));
@@ -56,30 +46,8 @@ const BurnWindow = (props) => {
                 selectedMiners.includes(token.token_id) && 'selectedMiner-burn'
               }`}
             >
-              <h3
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  position: 'absolute',
-                  color: 'black',
-                  bottom: '0',
-                  fontSize: '15px',
-                  padding: '5px',
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '18px',
-                    width: '18px',
-                    fontSize: '15px',
-                    backgroundColor: 'white',
-                    border: '1px solid black',
-                  }}
-                >
+              <h3 id='burnWindowMinerTextContainer'>
+                <span id='burnWindowMinerCheckBox'>
                   {selectedMiners.includes(token.token_id) && 'X'}
                 </span>
                 <span style={{ paddingLeft: '5px' }}>Miner #{token.token_id}</span>
@@ -87,7 +55,9 @@ const BurnWindow = (props) => {
             </div>
           </div>
         ))}
-        <div style={{ display: 'block', height: '50px', width: '150px' }} />
+
+        {/* Padding for bottom */}
+        <div style={{ flexBasis: '100%', height: '50px' }} />
       </div>
       <button
         disabled={selectedMiners.length === 0 || selectedMiners.length % 2 !== 0}
