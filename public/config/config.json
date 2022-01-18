@@ -1,7 +1,7 @@
 {
   "CONTRACT_ADDRESS": "0x47Bd71b482B27eBDb57af6e372cab46c7280bf44",
   "ULTRA_MINER_CONTRACT_ADDRESS": "0x0c6822ca73de6871f27acd9ca05a05b99294b805",
-  "SCAN_LINK": "https://etherscan.io/address/0x47Bd71b482B27eBDb57af6e372cab46c7280bf44",
+  "SCAN_LINK": "https://etherscan.io/address/0x0c6822ca73de6871f27acd9ca05a05b99294b805",
   "BASE_ASSET_URL": "https://api.opensea.io/api/v1/assets",
   "NETWORK": {
     "NAME": "Mainnet",
