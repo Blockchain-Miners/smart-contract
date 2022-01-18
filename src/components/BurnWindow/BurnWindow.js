@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const BurnWindow = (props) => {
   const { tokenData, blockchain, setTokenData } = props;
   const [selectedMiners, setSelectedMiners] = useState([]);
-  const [isBmcUserApproved, setIsBmcUserApproved] = useState(false);
+  const [isBmcUserApproved, setIsBmcUserApproved] = useState(null);
   const [isBurnButtonDisabled, setIsBurnButtonDisabled] = useState(false);
   const [isApproveButtonDisabled, setIsApproveButtonDisabled] = useState(false);
 
@@ -65,8 +65,8 @@ const BurnWindow = (props) => {
           </div>
         ))}
 
-        {/* Padding for bottom */}
-        <div style={{ flexBasis: '100%', height: '50px' }} />
+        {/* Flex line-break for bottom */}
+        <div style={{ flexBasis: '100%', height: '100px' }} />
       </div>
       {isBmcUserApproved ? (
         <button
@@ -118,44 +118,46 @@ const BurnWindow = (props) => {
           {isBurnButtonDisabled ? <h3>WAITING FOR TRANSACTION</h3> : <h3>BURN FOR ULTRA</h3>}
         </button>
       ) : (
-        <button
-          disabled={isApproveButtonDisabled}
-          className='headerBoxBurnButton'
-          onClick={async (e) => {
-            e.preventDefault();
-            const configResponse = await fetch('/config/config.json', {
-              headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-              },
-            });
-            const CONFIG = await configResponse.json();
-
-            setIsApproveButtonDisabled(true);
-            await blockchain.smartContract.methods
-              .setApprovalForAll(CONFIG.ULTRA_MINER_CONTRACT_ADDRESS, true)
-              .send({
-                from: blockchain.account,
-              })
-              .then(() => {
-                setIsApproveButtonDisabled(false);
-                setIsBmcUserApproved(true);
-              })
-              .catch((error) => {
-                setIsApproveButtonDisabled(false);
-                alert(
-                  'Something went wrong while approving, please try again or contact an admin.',
-                );
-                console.log('approve failed error:', error);
+        isBmcUserApproved !== null && (
+          <button
+            disabled={isApproveButtonDisabled}
+            className='headerBoxBurnButton'
+            onClick={async (e) => {
+              e.preventDefault();
+              const configResponse = await fetch('/config/config.json', {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Accept: 'application/json',
+                },
               });
-          }}
-        >
-          {isApproveButtonDisabled ? (
-            <h3>WAITING FOR TRANSACTION</h3>
-          ) : (
-            <h3>APPROVE FOR ULTRA BURN</h3>
-          )}
-        </button>
+              const CONFIG = await configResponse.json();
+
+              setIsApproveButtonDisabled(true);
+              await blockchain.smartContract.methods
+                .setApprovalForAll(CONFIG.ULTRA_MINER_CONTRACT_ADDRESS, true)
+                .send({
+                  from: blockchain.account,
+                })
+                .then(() => {
+                  setIsApproveButtonDisabled(false);
+                  setIsBmcUserApproved(true);
+                })
+                .catch((error) => {
+                  setIsApproveButtonDisabled(false);
+                  alert(
+                    'Something went wrong while approving, please try again or contact an admin.',
+                  );
+                  console.log('approve failed error:', error);
+                });
+            }}
+          >
+            {isApproveButtonDisabled ? (
+              <h3>WAITING FOR TRANSACTION</h3>
+            ) : (
+              <h3>APPROVE FOR ULTRA BURN</h3>
+            )}
+          </button>
+        )
       )}
     </div>
   );

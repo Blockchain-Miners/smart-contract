@@ -2,29 +2,29 @@
 
 //Focus input
 :focus-visible {
-	outline: -webkit-focus-ring-color auto 0px;
+  outline: -webkit-focus-ring-color auto 0px;
 }
 
 .yellowFont {
-	color: $color1;
+  color: $color1;
 }
 
 h4 {
-	text-align: center;
-	color: red;
-	font-size: 18px;
+  text-align: center;
+  color: red;
+  font-size: 18px;
 }
 
 .soldOut {
-	text-align: center;
-	color: red;
+  text-align: center;
+  color: red;
 }
 
 .bmcLogo {
-	width: 100%;
-	max-width: 149px;
-	height: auto;
-	@media (max-width: 600px) {
-		max-width: 32px;
-	}
+  width: 100%;
+  max-width: 149px;
+  height: auto;
+  @media (max-width: 600px) {
+    max-width: 80px;
+  }
 }
