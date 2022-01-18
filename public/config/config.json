@@ -2,6 +2,7 @@
   "CONTRACT_ADDRESS": "0x59607FcD0A5187cc6360291075B8dcf0eA22D880",
   "ULTRA_MINER_CONTRACT_ADDRESS": "0xDe9eA6d2b2ea0961a9c170621363852fEEc82851",
   "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x59607FcD0A5187cc6360291075B8dcf0eA22D880",
+  "BASE_ASSET_URL": "https://testnets-api.opensea.io/api/v1/assets",
   "NETWORK": {
     "NAME": "Rinkeby",
     "SYMBOL": "ETH",

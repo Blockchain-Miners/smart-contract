@@ -54,8 +54,7 @@ function Burn() {
         });
         const CONFIG = await configResponse.json();
         fetch(
-          `https://testnets-api.opensea.io/api/v1/assets?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}`,
-          // `https://api.opensea.io/api/v1/assets?owner=0x5E2a2C4c0Aaf5A516FC378dA5a0a93e256193AE4&asset_contract_addresses=0x47Bd71b482B27eBDb57af6e372cab46c7280bf44`,
+          `${CONFIG.BASE_ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}`,
         )
           .then((data) => data.json())
           .then((data) => {
@@ -65,9 +64,9 @@ function Burn() {
               alert('Something went wrong loading your BMC assets');
             }
           })
-          .catch((e) => {
+          .catch((error) => {
             alert('Something went wrong loading your BMC assets');
-            console.log(e);
+            console.log('error loading assets', error);
           });
       }
     })();
