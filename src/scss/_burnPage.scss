@@ -1,114 +1,274 @@
 .burnPage {
-	.headerBoxTopM {
-		width: 100%;
-		@include centerBox(space-between, center);
-		display: none;
-		@media (max-width: 600px) {
-			display: none;
-			padding: 50px 20px 30px;
-		}
-		.righBoxTop {
-			@include centerBox();
-			.hashDisplay {
-				min-width: 159px;
-				padding: 10px;
-				text-align: center;
-				background-color: $blackColor;
-				border-radius: 37.5px;
-				margin-left: 20px;
-				h3 {
-					color: white;
-					font-size: 16px;
-				}
-				.connectBox {
-					font-size: 24px;
-					.btnConnect {
-						background-color: black !important;
-						border: none;
-					}
-				}
-			}
-		}
-	}
-	header {
-		padding: 44px;
-		background-image: url('../assets/desktop/topBackground.png');
-		background-repeat: no-repeat;
-		background-size: cover;
-		@media (max-width: 600px) {
-			background-image: url('../assets/mobile/topBackground.png');
-		}
-		.headerBoxTop {
-			width: 100%;
-			@include centerBox(space-between, center);
-			@media (max-width: 600px) {
-				display: none;
-			}
-			.righBoxTop {
-				@include centerBox();
-				.hashDisplay {
-					min-width: 280px;
-					padding: 10px;
-					text-align: center;
-					background-color: $blackColor;
-					border-radius: 37.5px;
-					margin-left: 20px;
-					h3 {
-						color: white;
-					}
-					.connectBox {
-						font-size: 24px;
-						.btnConnect {
-							background-color: black !important;
-							border: none;
-							color: white;
-							h3 {
-								font-size: 24px;
-							}
-						}
-					}
-				}
-			}
-		}
-		.headerBoxBottom {
-			max-width: 500px;
-			margin: 100px auto 88px;
-			@media (max-width: 600px) {
-				margin: 20px auto 28px;
-			}
+  .headerBoxTopM {
+    width: 100%;
+    @include centerBox(space-between, center);
+    display: none;
+    @media (max-width: 600px) {
+      display: none;
+      padding: 50px 20px 30px;
+    }
+    .righBoxTop {
+      @include centerBox();
+      .hashDisplay {
+        min-width: 159px;
+        padding: 10px;
+        text-align: center;
+        background-color: $blackColor;
+        border-radius: 37.5px;
+        margin-left: 20px;
+        h3 {
+          color: white;
+          font-size: 16px;
+        }
+        .connectBox {
+          font-size: 24px;
+          .btnConnect {
+            background-color: black !important;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  header {
+    padding: 44px;
+    background-image: url('../assets/desktop/topBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media (max-width: 600px) {
+      background-image: url('../assets/mobile/topBackground.png');
+    }
+    .headerBoxTop {
+      width: 100%;
+      @include centerBox(space-between, center);
+      @media (max-width: 600px) {
+        display: none;
+      }
+      .righBoxTop {
+        @include centerBox();
+        .hashDisplay {
+          min-width: 280px;
+          padding: 10px;
+          text-align: center;
+          background-color: $blackColor;
+          border-radius: 37.5px;
+          margin-left: 20px;
+          h3 {
+            color: white;
+          }
+          .connectBox {
+            font-size: 24px;
+            .btnConnect {
+              background-color: black !important;
+              border: none;
+              color: white;
+              h3 {
+                font-size: 24px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .headerBoxBottom {
+      max-width: 900px;
+      margin: 10px auto 88px;
+      @media (max-width: 600px) {
+        margin: 20px auto 28px;
+      }
 
-			img {
-				width: 100%;
-				max-width: 447px;
-				margin: 0 auto;
-				text-align: center;
-				display: flex;
-				@media (max-width: 600px) {
-					max-width: 202px;
-					display: block;
-				}
-			}
-			a {
-				display: block;
-				color: $blackColor;
-				background-color: white;
-				border-radius: 37px;
-				max-width: 392px;
-				width: 100%;
-				margin: 45px auto;
-				text-align: center;
-				padding: 22px 82px;
-				font-size: 24px;
-				font-weight: 700;
-				@media (max-width: 600px) {
-					font-size: 14px;
-					font-weight: 800;
-					display: block;
-					padding: 10px;
-					text-align: center;
-					margin: 10px auto;
-				}
-			}
-		}
-	}
+      img {
+        width: 100%;
+        max-width: 447px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        @media (max-width: 600px) {
+          max-width: 202px;
+          display: block;
+        }
+      }
+      a {
+        display: block;
+        color: $blackColor;
+        background-color: white;
+        border-radius: 37px;
+        max-width: 392px;
+        width: 100%;
+        margin: 45px auto;
+        text-align: center;
+        padding: 22px 82px;
+        font-size: 24px;
+        font-weight: 700;
+        @media (max-width: 600px) {
+          font-size: 14px;
+          font-weight: 800;
+          display: block;
+          padding: 10px;
+          text-align: center;
+          margin: 10px auto;
+        }
+      }
+      .headerOutsideBox {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-content: center;
+        width: 100%;
+        border: 2px solid $color1;
+        border-radius: 15px;
+        height: 500px;
+        overflow: hidden;
+        #burnWindowHeader {
+          height: 80px;
+          width: 100%;
+          background-color: $color1;
+          @media (max-width: 600px) {
+            height: 40px;
+          }
+          #burnWindowHeaderTitle {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 500;
+            padding-top: 10px;
+            @media (max-width: 600px) {
+              font-size: 20px;
+              font-weight: 700;
+              padding: 10px;
+            }
+          }
+          .burnWindowHeaderUtil {
+            margin: 0px 0px 0px 15px;
+            cursor: pointer;
+            font-weight: 800;
+            text-decoration: underline;
+            display: inline-block;
+            font-size: 15px;
+            @media (max-width: 600px) {
+              display: none;
+            }
+            &:hover {
+              opacity: 0.6;
+            }
+          }
+        }
+        #burnWindowMiners {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          flex-direction: row;
+          width: 100%;
+          overflow: scroll;
+          overflow-y: auto;
+          height: calc(100% - 25px);
+          overflow-x: hidden;
+          background-color: rgba(0, 0, 0, 0.7);
+          border: 10px solid $color1;
+          .burnWindowMiner {
+            margin: 5px;
+            height: 210px;
+            width: 210px;
+            position: relative;
+            cursor: pointer;
+            @media (max-width: 600px) {
+              height: 150px;
+              width: 150px;
+            }
+            @media (max-width: 450px) {
+              height: 100px;
+              width: 100px;
+            }
+          }
+        }
+        .headerBoxBurnButton {
+          position: absolute;
+          align-self: center;
+          bottom: 0;
+          width: 75%;
+          max-width: 300px;
+          border-radius: 25px;
+          color: black;
+          background-color: rgb(255, 168, 0);
+          box-shadow: 3px 3px 0px #866b00;
+          padding: 10px;
+          border: none;
+          margin-left: 20px;
+          margin-right: 20px;
+          margin-bottom: 10px;
+          h3 {
+            font-size: 20px;
+            @media (max-width: 600px) {
+              font-size: 15px !important;
+            }
+          }
+          &:disabled {
+            background-color: #373737;
+            box-shadow: 3px 3px 0px #0e0e0e;
+          }
+        }
+      }
+    }
+  }
+
+  .miner-burn {
+    position: absolute;
+    height: 100px;
+    width: 210px;
+    bottom: 0;
+    border-radius: 5px;
+    background: linear-gradient(0deg, rgba(119, 119, 119, 1) 27%, rgba(27, 215, 228, 0) 53%);
+    &.selectedMiner-burn {
+      background: linear-gradient(0deg, rgba(255, 244, 0, 1) 28%, rgba(27, 215, 228, 0) 53%);
+    }
+    @media (max-width: 600px) {
+      width: 150px;
+      height: 80px;
+    }
+    @media (max-width: 450px) {
+      width: 100px;
+      height: 60px;
+    }
+
+    #burnWindowMinerTextContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      color: black;
+      bottom: 0;
+      padding: 5px;
+      font-size: 15px;
+      @media (max-width: 600px) {
+        font-size: 10px;
+        padding: 3px;
+      }
+      @media (max-width: 450px) {
+        font-size: 8px;
+        padding: 2px;
+      }
+    }
+
+    #burnWindowMinerCheckBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 18px;
+      width: 18px;
+      font-size: 15px;
+      text-align: center;
+      background-color: white;
+      border: 1px solid black;
+      @media (max-width: 600px) {
+        height: 15px;
+        width: 15px;
+        font-size: 13px;
+      }
+      @media (max-width: 450px) {
+        height: 13px;
+        width: 13px;
+        font-size: 10px;
+      }
+    }
+  }
 }
