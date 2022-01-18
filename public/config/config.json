@@ -1,5 +1,6 @@
 {
   "CONTRACT_ADDRESS": "0x59607FcD0A5187cc6360291075B8dcf0eA22D880",
+  "ULTRA_MINER_CONTRACT_ADDRESS": "0xDe9eA6d2b2ea0961a9c170621363852fEEc82851",
   "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x59607FcD0A5187cc6360291075B8dcf0eA22D880",
   "NETWORK": {
     "NAME": "Rinkeby",
@@ -11,6 +12,7 @@
   "MAX_SUPPLY": 11111,
   "WEI_COST": 70000000000000000,
   "DISPLAY_COST": 0.07,
+  "ADJUST_GAS": 1.2,
   "MARKETPLACE": "Opensea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/BlockchainMiners",
   "SHOW_BACKGROUND": true

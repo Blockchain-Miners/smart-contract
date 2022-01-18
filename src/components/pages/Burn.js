@@ -59,11 +59,15 @@ function Burn() {
         )
           .then((data) => data.json())
           .then((data) => {
-            if (data.assets && data.assets.length) {
+            if (data.assets) {
               setTokenData(data.assets);
             } else {
-              console.log('either empty or error');
+              alert('Something went wrong loading your BMC assets');
             }
+          })
+          .catch((e) => {
+            alert('Something went wrong loading your BMC assets');
+            console.log(e);
           });
       }
     })();
@@ -237,7 +241,11 @@ function Burn() {
                 Connect Wallet
               </a>
             ) : (
-              <BurnWindow tokenData={tokenData} blockchain={blockchain} />
+              <BurnWindow
+                tokenData={tokenData}
+                blockchain={blockchain}
+                setTokenData={setTokenData}
+              />
             )}
           </div>
         </header>

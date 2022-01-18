@@ -31,40 +31,23 @@ const updateAccountRequest = (payload) => {
   };
 };
 
-const getAbiResponse = async () => {
-  const abiResponse = await fetch('/config/abi.json', {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  });
-  const abi = await abiResponse.json();
-
-  return abi;
-};
-
-const getConfigResponse = async () => {
-  const configResponse = await fetch('/config/config.json', {
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  });
-  const config = await configResponse.json();
-
-  return config;
-};
-
 export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    const abiResponse = await fetch('/config/abi.json', {
+    const bmcAbiResponse = await fetch('/config/abi.json', {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
     });
-    const abi = await abiResponse.json();
+    const umAbiResponse = await fetch('/config/umabi.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+    const abi = await bmcAbiResponse.json();
+    const umAbi = await umAbiResponse.json();
     const configResponse = await fetch('/config/config.json', {
       headers: {
         'Content-Type': 'application/json',
@@ -86,10 +69,15 @@ export const connect = () => {
         });
         if (networkId == CONFIG.NETWORK.ID) {
           const SmartContractObj = new Web3EthContract(abi, CONFIG.CONTRACT_ADDRESS);
+          const UltraMinerSmartContractObj = new Web3EthContract(
+            umAbi,
+            CONFIG.ULTRA_MINER_CONTRACT_ADDRESS,
+          );
           dispatch(
             connectSuccess({
               account: accounts[0],
-              smartContract: SmartContractObj,
+              smartContract: SmartContractObj, // TODO readable rename
+              umSmartContract: UltraMinerSmartContractObj,
               web3: web3,
             }),
           );

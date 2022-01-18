@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
-
-/**
- * TODO
- * connect burn with smart contract
- */
+import React, { useEffect, useState } from 'react';
 
 const BurnWindow = (props) => {
-  const { tokenData, blockchain } = props;
+  const { tokenData, blockchain, setTokenData } = props;
   const [selectedMiners, setSelectedMiners] = useState([]);
+  const [isBmcUserApproved, setIsBmcUserApproved] = useState(false);
+
+  const isTokenSelected = (tokenId) => {
+    return selectedMiners.includes(tokenId);
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (blockchain.account && blockchain.umSmartContract) {
+        const isUserApproved = await blockchain.umSmartContract.methods
+          .getBmcApprovalStatus(blockchain.account)
+          .call({ from: blockchain.account });
+        setIsBmcUserApproved(isUserApproved);
+      }
+    })();
+  }, [blockchain]);
 
   return (
     <div className='headerOutsideBox'>
@@ -29,10 +40,10 @@ const BurnWindow = (props) => {
             key={token.token_id}
             className='burnWindowMiner'
             onClick={() => {
-              if (selectedMiners.includes(token.token_id)) {
-                setSelectedMiners((prev) => prev.filter((val) => token.token_id !== val));
+              if (isTokenSelected(token.token_id)) {
+                setSelectedMiners((prev) => prev.filter((tokenId) => token.token_id !== tokenId));
               } else {
-                setSelectedMiners((prev) => [...prev, `${token.token_id}`]);
+                setSelectedMiners((prev) => [...prev, token.token_id]);
               }
             }}
           >
@@ -42,14 +53,10 @@ const BurnWindow = (props) => {
               alt={`${token.name} ${token.token_id}`}
             />
             <div
-              className={`miner-burn ${
-                selectedMiners.includes(token.token_id) && 'selectedMiner-burn'
-              }`}
+              className={`miner-burn ${isTokenSelected(token.token_id) && 'selectedMiner-burn'}`}
             >
               <h3 id='burnWindowMinerTextContainer'>
-                <span id='burnWindowMinerCheckBox'>
-                  {selectedMiners.includes(token.token_id) && 'X'}
-                </span>
+                <span id='burnWindowMinerCheckBox'>{isTokenSelected(token.token_id) && 'X'}</span>
                 <span style={{ paddingLeft: '5px' }}>Miner #{token.token_id}</span>
               </h3>
             </div>
@@ -60,14 +67,68 @@ const BurnWindow = (props) => {
         <div style={{ flexBasis: '100%', height: '50px' }} />
       </div>
       <button
-        disabled={selectedMiners.length === 0 || selectedMiners.length % 2 !== 0}
+        disabled={
+          (selectedMiners.length === 0 || selectedMiners.length % 2 !== 0) &&
+          blockchain.account &&
+          blockchain.emSmartContract
+        }
         className='headerBoxBurnButton'
-        onClick={(e) => {
+        onClick={async (e) => {
           e.preventDefault();
-          // blockchain.smartContract.methods.burnForUltra();
+          const configResponse = await fetch('/config/config.json', {
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+          });
+          const CONFIG = await configResponse.json();
+          const UM_CONTRACT_ADDRESS = CONFIG.ULTRA_MINER_CONTRACT_ADDRESS;
+
+          if (!isBmcUserApproved) {
+            const approval = true;
+            const totalGasLimited = await blockchain.umSmartContract.methods
+              .setApprovalForAll(UM_CONTRACT_ADDRESS, approval)
+              .estimateGas({ from: blockchain.account, value: 0 });
+            await blockchain.umSmartContract.methods
+              .setApprovalForAll(UM_CONTRACT_ADDRESS, approval)
+              .send({
+                from: blockchain.account,
+                gasLimit: String(Math.floor(parseInt(totalGasLimited * CONFIG.ADJUST_GAS))),
+              })
+              .then(() => {
+                setIsBmcUserApproved(true);
+              })
+              .catch((error) => {
+                alert('Something went wrong while approving, please contact an admin.');
+                console.log('approve failed error:', error);
+              });
+            return;
+          }
+
+          const uintMiners = selectedMiners.map((tokenId) => parseInt(tokenId));
+
+          const totalGasLimited = await blockchain.umSmartContract.methods
+            .synthesizeManyUltraminers(uintMiners)
+            .estimateGas({ from: blockchain.account, value: 0 });
+
+          blockchain.umSmartContract.methods
+            .synthesizeManyUltraminers(uintMiners)
+            .send({
+              from: blockchain.account,
+              to: UM_CONTRACT_ADDRESS,
+              gasLimit: String(Math.floor(parseInt(totalGasLimited * CONFIG.ADJUST_GAS))),
+            })
+            .then((data) => {
+              setTokenData((prev) => prev.filter((token) => !isTokenSelected(token.token_id)));
+              return data;
+            })
+            .catch((error) => {
+              alert('Something went wrong while burning, please contact an admin.');
+              console.log('burn failed error:', error);
+            });
         }}
       >
-        <h3>BURN FOR ULTRA</h3>
+        <h3>{isBmcUserApproved ? 'BURN FOR ULTRA' : 'APPROVE FOR ULTRA BURN'}</h3>
       </button>
     </div>
   );

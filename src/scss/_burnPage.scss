@@ -203,7 +203,8 @@
             }
           }
           &:disabled {
-            background-color: red;
+            background-color: #373737;
+            box-shadow: 3px 3px 0px #0e0e0e;
           }
         }
       }
