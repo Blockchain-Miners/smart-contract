@@ -264,9 +264,11 @@ function Burn() {
             ) : isBurnAlive === null ? (
               <h3>Loading...</h3>
             ) : (
-              <h3 style={{ textAlign: 'center' }}>
-                Burning for Ultra Miners will happen on <span>01 / 18 / 2022 at 6:00PM PST</span>
-              </h3>
+              <div id='burnUltraLock'>
+                <h3 style={{ textAlign: 'center' }}>
+                  Burning for Ultra Miners will happen on <span>01/18/2022 at 6:00PM PST</span>
+                </h3>
+              </div>
             )}
           </div>
         </header>

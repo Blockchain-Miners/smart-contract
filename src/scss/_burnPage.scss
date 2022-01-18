@@ -271,3 +271,14 @@
     }
   }
 }
+
+#burnUltraLock {
+  background-color: yellow;
+  border-radius: 15px;
+  padding: 50px;
+  h3 {
+    @media (max-width: 600px) {
+      font-size: 25px;
+    }
+  }
+}
