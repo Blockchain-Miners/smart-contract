@@ -442,7 +442,7 @@ export default function Home() {
                 <img src={mike} alt='Mike Jalonen' />
                 <figcaption>
                   <h3>mikejlucky</h3>
-                  <p>Mike Jalonen | COO</p>
+                  <p>Mike Jalonen | Partner</p>
                 </figcaption>
               </figure>
               <figure>
