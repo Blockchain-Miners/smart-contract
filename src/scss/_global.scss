@@ -1,78 +1,85 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 /* Set core body defaults */
 body {
-	text-rendering: optimizeSpeed;
-	font-family: $fontFamily !important;
-	background-color: $bgColor;
+  text-rendering: optimizeSpeed;
+  font-family: $fontFamily !important;
+  background-color: $bgColor;
 }
 
 a {
-	cursor: pointer;
-	text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 h2 {
-	font-size: 78px;
-	font-weight: normal;
-	font-family: $titleFont;
+  font-size: 78px;
+  font-weight: normal;
+  font-family: $titleFont;
 }
 
 h3 {
-	font-size: 36px;
-	font-weight: normal;
-	font-family: $titleFont;
+  font-size: 36px;
+  font-weight: normal;
+  font-family: $titleFont;
 }
 
 p {
-	font-size: 32px;
-	font-weight: 400;
-	font-family: $fontFamily !important;
+  font-size: 32px;
+  font-weight: 400;
+  font-family: $fontFamily !important;
+}
+
+button:hover {
+  cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .iconsBox {
-	width: 100%;
-	@include centerBox(space-around, center);
-	.logo {
-		@include centerBox(flex-start, center);
-		img {
-			width: 64px;
-			height: auto;
-		}
-		h1 {
-			margin-left: 20px;
-			font-style: normal;
-			font-weight: bold;
-			font-family: $titleFont;
-			font-size: 30px;
-			line-height: 45px;
-			@media (max-width: 600px) {
-				display: none;
-			}
-		}
-	}
-	.socialMedia {
-		@include centerBox();
-		flex-wrap: nowrap;
-		img {
-			margin: 0 5px;
-		}
-	}
+  width: 100%;
+  @include centerBox(space-around, center);
+  .logo {
+    @include centerBox(flex-start, center);
+    img {
+      width: 64px;
+      height: auto;
+    }
+    h1 {
+      margin-left: 20px;
+      font-style: normal;
+      font-weight: bold;
+      font-family: $titleFont;
+      font-size: 30px;
+      line-height: 45px;
+      @media (max-width: 600px) {
+        display: none;
+      }
+    }
+  }
+  .socialMedia {
+    @include centerBox();
+    flex-wrap: nowrap;
+    img {
+      margin: 0 5px;
+    }
+  }
 }
 
 .errorMint {
-	text-align: center;
+  text-align: center;
 }
 
 .mainContainer {
-	margin: 0 auto;
-	width: 100%;
-	max-width: 1500px;
-	background-color: $color1;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1500px;
+  background-color: $color1;
 }

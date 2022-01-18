@@ -1,172 +1,284 @@
 .burnPage {
-	background-color: $color1;
-	width: 100%;
-	max-width: 1440px;
-	margin: 0 auto;
-	position: relative;
-	padding: 20px 20px 100px;
+  min-height: 100vh;
+  .headerBoxTopM {
+    width: 100%;
+    @include centerBox(space-between, center);
+    display: none;
+    @media (max-width: 600px) {
+      display: none;
+      padding: 50px 20px 30px;
+    }
+    .righBoxTop {
+      @include centerBox();
+      .hashDisplay {
+        min-width: 159px;
+        padding: 10px;
+        text-align: center;
+        background-color: $blackColor;
+        border-radius: 37.5px;
+        margin-left: 20px;
+        h3 {
+          color: white;
+          font-size: 16px;
+        }
+        .connectBox {
+          font-size: 24px;
+          .btnConnect {
+            background-color: black !important;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  header {
+    padding: 44px;
+    min-height: 60vh;
+    background-image: url('../assets/desktop/topBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media (max-width: 600px) {
+      background-image: url('../assets/mobile/topBackground.png');
+    }
+    .headerBoxTop {
+      width: 100%;
+      @include centerBox(space-between, center);
+      .righBoxTop {
+        @include centerBox();
+        .hashDisplay {
+          min-width: 280px;
+          padding: 10px;
+          text-align: center;
+          background-color: $blackColor;
+          border-radius: 37.5px;
+          margin-left: 20px;
+          h3 {
+            color: white;
+          }
+          @media (max-width: 600px) {
+            display: none;
+          }
+          .connectBox {
+            font-size: 24px;
+            .btnConnect {
+              background-color: black !important;
+              border: none;
+              color: white;
+              h3 {
+                font-size: 24px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .headerBoxBottom {
+      max-width: 900px;
+      margin: 10px auto 70px;
+      @media (max-width: 600px) {
+        margin: 20px auto 20px;
+      }
 
-	.wrapperCont {
-		width: 100%;
-		max-width: 600px;
-		margin: 0 auto;
-		position: relative;
-		.blueMiner {
-			width: 100%;
-			text-align: center;
-			padding-bottom: 50px;
-			img {
-				max-width: 372px;
-				margin: 29px auto;
-			}
-		}
+      img {
+        width: 100%;
+        max-width: 447px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        @media (max-width: 600px) {
+          max-width: 202px;
+          display: block;
+        }
+      }
+      a {
+        display: block;
+        color: $blackColor;
+        background-color: white;
+        border-radius: 37px;
+        max-width: 392px;
+        width: 100%;
+        margin: 45px auto;
+        text-align: center;
+        padding: 22px 82px;
+        font-size: 24px;
+        font-weight: 700;
+        @media (max-width: 600px) {
+          font-size: 14px;
+          font-weight: 800;
+          display: block;
+          padding: 10px;
+          text-align: center;
+          margin: 10px auto;
+        }
+      }
+      .headerOutsideBox {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-content: center;
+        width: 100%;
+        border: 2px solid $color1;
+        border-radius: 15px;
+        height: 500px;
+        overflow: hidden;
+        #burnWindowHeader {
+          height: 80px;
+          width: 100%;
+          background-color: $color1;
+          @media (max-width: 600px) {
+            height: 40px;
+          }
+          #burnWindowHeaderTitle {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 500;
+            padding-top: 10px;
+            @media (max-width: 600px) {
+              font-size: 20px;
+              font-weight: 700;
+              padding: 10px;
+            }
+          }
+          .burnWindowHeaderUtil {
+            margin: 0px 0px 0px 15px;
+            cursor: pointer;
+            font-weight: 800;
+            text-decoration: underline;
+            display: inline-block;
+            font-size: 15px;
+            @media (max-width: 600px) {
+              display: none;
+            }
+            &:hover {
+              opacity: 0.6;
+            }
+          }
+        }
+        #burnWindowMiners {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          flex-direction: row;
+          width: 100%;
+          overflow: scroll;
+          overflow-y: auto;
+          height: calc(100% - 25px);
+          overflow-x: hidden;
+          background-color: rgba(0, 0, 0, 0.7);
+          border: 10px solid $color1;
+          .burnWindowMiner {
+            margin: 5px;
+            height: 210px;
+            width: 210px;
+            position: relative;
+            cursor: pointer;
+            @media (max-width: 600px) {
+              height: 150px;
+              width: 150px;
+            }
+            @media (max-width: 450px) {
+              height: 120px;
+              width: 120px;
+            }
+          }
+        }
+        .headerBoxBurnButton {
+          position: absolute;
+          align-self: center;
+          bottom: 20px;
+          width: 80%;
+          max-width: 400px;
+          border-radius: 25px;
+          color: black;
+          background-color: rgb(255, 168, 0);
+          box-shadow: 3px 3px 0px #866b00;
+          padding: 10px;
+          border: none;
+          h3 {
+            font-size: 20px;
+            @media (max-width: 600px) {
+              font-size: 12px !important;
+            }
+          }
+          &:disabled {
+            background-color: #373737;
+            box-shadow: 3px 3px 0px #0e0e0e;
+          }
+        }
+      }
+    }
+  }
 
-		.connectBox {
-			width: 100%;
-			max-width: 360px;
-			margin: 10px auto;
-			background: #191919;
-			border-radius: 10px;
-			padding: 33px 20px;
-			.btnConnect {
-				@include centerBox();
-				border: none;
-				width: 100%;
-				max-width: 300px;
-				height: 60px;
-				margin: 0 auto;
-				font-weight: bold;
-				font-size: 30px;
-				line-height: 45px;
-				background: #ffffff;
-				border-radius: 4px;
-				color: #000000;
-				cursor: pointer;
-			}
-		}
-		.mintBox {
-			width: 100%;
-			max-width: 360px;
-			margin: 0 auto;
-			background: #191919;
-			border-radius: 10px;
-			padding: 10px 10px 33px;
-			h3 {
-				font-weight: bold;
-				font-size: 24px;
-				line-height: 36px;
-				text-align: center;
-				color: #ffffff;
-			}
-			.totalSupply {
-				font-weight: bold;
-				font-size: 36px;
-				line-height: 54px;
-				text-align: center;
-				color: #faff11;
-				margin: 5px auto 20px;
-				padding: 0;
-			}
-			.quantityBtns {
-				@include centerBox();
-				.quantityBtnMin {
-					border: none;
-					border-radius: 50%;
-					width: 50px;
-					height: 50px;
-					font-weight: bolder;
-					font-size: 40px;
-					text-align: center;
-					color: #000000;
-					background-color: #ffffff;
-					cursor: pointer;
-					@include centerBox();
-					// strong {
-					// 	margin-top: -5px;
-					// 	height: 5px;
-					// 	line-height: 0px;
-					// }
-				}
-				.quantityBtn {
-					@include centerBox();
-					border: none;
-					border-radius: 50%;
-					width: 50px;
-					height: 50px;
-					font-weight: bolder;
-					font-size: 40px;
-					line-height: 50px;
-					text-align: center;
-					color: #000000;
-					cursor: pointer;
-					background-color: #ffffff;
-				}
-				.amount {
-					margin: 10px 50px;
-					font-weight: bold;
-					font-size: 48px;
-					line-height: 72px;
-					text-align: center;
-					color: #ffffff;
-				}
-			}
+  .miner-burn {
+    position: absolute;
+    height: 100px;
+    width: 210px;
+    bottom: 0;
+    border-radius: 5px;
+    background: linear-gradient(0deg, rgba(119, 119, 119, 1) 27%, rgba(27, 215, 228, 0) 53%);
+    &.selectedMiner-burn {
+      background: linear-gradient(0deg, rgba(255, 244, 0, 1) 28%, rgba(27, 215, 228, 0) 53%);
+    }
+    @media (max-width: 600px) {
+      width: 150px;
+      height: 90px;
+    }
+    @media (max-width: 450px) {
+      width: 120px;
+      height: 80px;
+    }
 
-			h5 {
-				font-size: 14px;
-				line-height: 21px;
-				color: #ffffff;
-				font-weight: 400;
-				padding: 0;
-				width: 100%;
-				text-align: center;
-				margin: 0 auto 10px;
-			}
-			.btnMint {
-				@include centerBox();
-				border: none;
-				width: 300px;
-				height: 60px;
-				margin: 0 auto;
-				font-weight: bold;
-				font-size: 30px;
-				line-height: 45px;
-				background: #ffffff;
-				border-radius: 4px;
-				color: #000000;
-				cursor: pointer;
-			}
-		}
-	}
+    #burnWindowMinerTextContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      color: black;
+      bottom: 0;
+      padding: 5px;
+      font-size: 15px;
+      @media (max-width: 600px) {
+        font-size: 15px;
+        padding: 3px;
+      }
+      @media (max-width: 450px) {
+        font-size: 12px;
+        padding: 3px;
+      }
+    }
 
-	.yellowDivisor {
-		width: 100%;
-		position: absolute;
-		bottom: -1px;
-		width: 100%;
-		left: 0;
-		right: 0;
-		display: none;
-		@media (max-width: 600px) {
-			display: block;
-		}
-	}
-	.yellowDivisor2 {
-		position: absolute;
-		bottom: -1px;
-		width: 100%;
-		left: 0;
-		right: 0;
-		@media (max-width: 600px) {
-			display: none;
-		}
-	}
+    #burnWindowMinerCheckBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 18px;
+      width: 18px;
+      font-size: 15px;
+      text-align: center;
+      background-color: white;
+      border: 1px solid black;
+      @media (max-width: 600px) {
+        height: 15px;
+        width: 15px;
+        font-size: 13px;
+      }
+      @media (max-width: 450px) {
+        height: 13px;
+        width: 13px;
+        font-size: 10px;
+      }
+    }
+  }
 }
 
-.socialMediaBottom {
-	@include centerBox();
-	flex-wrap: nowrap;
-	margin: 20px auto;
-	img {
-		margin: 0 10px;
-	}
+#burnUltraLock {
+  background-color: yellow;
+  border-radius: 15px;
+  padding: 50px;
+  h3 {
+    @media (max-width: 600px) {
+      font-size: 25px;
+    }
+  }
 }

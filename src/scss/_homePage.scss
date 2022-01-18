@@ -1,439 +1,459 @@
 .homePage {
-	.headerBoxTopM {
-		width: 100%;
-		@include centerBox(space-between, center);
-		display: none;
-		@media (max-width: 600px) {
-			display: none;
-			padding: 50px 20px 30px;
-		}
-		.righBoxTop {
-			@include centerBox();
-			.hashDisplay {
-				min-width: 159px;
-				padding: 10px;
-				text-align: center;
-				background-color: $blackColor;
-				border-radius: 37.5px;
-				margin-left: 20px;
-				h3 {
-					color: white;
-					font-size: 16px;
-				}
-			}
-		}
-	}
-	header {
-		padding: 44px;
-		background-image: url('../assets/desktop/topBackground.png');
-		background-repeat: no-repeat;
-		background-size: cover;
-		@media (max-width: 600px) {
-			background-image: url('../assets/mobile/topBackground.png');
-		}
-		.headerBoxTop {
-			width: 100%;
-			@include centerBox(space-between, center);
-			@media (max-width: 600px) {
-				display: none;
-			}
-			.righBoxTop {
-				@include centerBox();
-				.hashDisplay {
-					min-width: 280px;
-					padding: 10px;
-					text-align: center;
-					background-color: $blackColor;
-					border-radius: 37.5px;
-					margin-left: 20px;
-					h3 {
-						color: white;
-					}
-				}
-			}
-		}
-		.headerBoxBottom {
-			max-width: 500px;
-			margin: 350px auto 88px;
-			@media (max-width: 600px) {
-				margin: 20px auto 28px;
-			}
+  .headerBoxTopM {
+    width: 100%;
+    @include centerBox(space-between, center);
+    display: none;
+    @media (max-width: 600px) {
+      display: none;
+      padding: 50px 20px 30px;
+    }
+    .righBoxTop {
+      @include centerBox();
+      .hashDisplay {
+        min-width: 159px;
+        padding: 10px;
+        text-align: center;
+        background-color: $blackColor;
+        border-radius: 37.5px;
+        margin-left: 20px;
+        h3 {
+          color: white;
+          font-size: 16px;
+        }
+        .connectBox {
+          font-size: 24px;
+          .btnConnect {
+            background-color: black !important;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  header {
+    padding: 44px;
+    background-image: url('../assets/desktop/topBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    @media (max-width: 600px) {
+      background-image: url('../assets/mobile/topBackground.png');
+    }
+    .headerBoxTop {
+      width: 100%;
+      @include centerBox(space-between, center);
+      .righBoxTop {
+        @include centerBox();
+        .hashDisplay {
+          min-width: 280px;
+          padding: 10px;
+          text-align: center;
+          background-color: $blackColor;
+          border-radius: 37.5px;
+          margin-left: 20px;
+          h3 {
+            color: white;
+          }
+          @media (max-width: 600px) {
+            display: none;
+          }
+          .connectBox {
+            font-size: 24px;
+            .btnConnect {
+              background-color: black !important;
+              border: none;
+              color: white;
+              h3 {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .headerBoxBottom {
+      max-width: 500px;
+      margin: 350px auto 88px;
+      @media (max-width: 600px) {
+        margin: 20px auto 28px;
+      }
 
-			img {
-				width: 100%;
-				max-width: 447px;
-				margin: 0 auto;
-				@media (max-width: 600px) {
-					max-width: 202px;
-					display: block;
-				}
-			}
-			a {
-				display: block;
-				color: $blackColor;
-				background-color: white;
-				border-radius: 37px;
-				max-width: 392px;
-				width: 100%;
-				margin: 45px auto;
-				text-align: center;
-				padding: 22px 82px;
-				font-size: 24px;
-				font-weight: 700;
-				@media (max-width: 600px) {
-					font-size: 14px;
-					font-weight: 800;
-					display: block;
-					padding: 10px;
-					text-align: center;
-					margin: 10px auto;
-				}
-			}
-		}
-	}
+      img {
+        width: 100%;
+        max-width: 447px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        @media (max-width: 600px) {
+          max-width: 202px;
+          display: block;
+        }
+      }
+      a {
+        display: block;
+        color: $blackColor;
+        background-color: white;
+        border-radius: 37px;
+        max-width: 392px;
+        width: 100%;
+        margin: 45px auto;
+        text-align: center;
+        padding: 22px 82px;
+        font-size: 24px;
+        font-weight: 700;
+        @media (max-width: 600px) {
+          font-size: 14px;
+          font-weight: 800;
+          display: block;
+          padding: 10px;
+          text-align: center;
+          margin: 10px auto;
+        }
+      }
+    }
+  }
 
-	.whatsbmc {
-		margin: 109px 0 0;
-		padding: 0;
-		@media (max-width: 600px) {
-			margin: 20px 0 0;
-		}
-		.sliders {
-			margin: 0 auto 90px;
-			width: 100%;
-			max-width: 1440px;
-			padding: 0;
-			@media (max-width: 600px) {
-				margin: 0 auto 20px;
-			}
-			div img {
-				width: 250px;
-				margin: 12px;
-				@media (max-width: 600px) {
-					width: 140px;
-					margin: 3px;
-				}
-			}
-		}
-		h2 {
-			text-align: center;
-			@media (max-width: 600px) {
-				font-size: 40px;
-			}
-		}
-		p {
-			max-width: 1197px;
-			text-align: center;
-			margin: 94px auto;
-			@media (max-width: 600px) {
-				font-size: 14px;
-				margin: 20px auto;
-				text-align: left;
-				padding: 0 20px;
-			}
-		}
-	}
-	.bmcRewards {
-		h2 {
-			text-align: center;
-			@media (max-width: 600px) {
-				font-size: 40px;
-			}
-		}
-		p {
-			text-align: center;
-			@media (max-width: 600px) {
-				font-size: 16px;
-			}
-		}
-		.rewardsHalf {
-			max-width: 1200px;
-			width: 100%;
-			margin: 100px auto;
-			@include centerBox();
-			@media (max-width: 600px) {
-				margin: 20px auto;
-			}
-			img {
-				padding: 10px;
-				max-width: 510px;
-				width: 100%;
-				margin: 0 auto;
-				@media (max-width: 600px) {
-					max-width: 210px;
-				}
-			}
-			.rewardsContent {
-				max-width: 690px;
-				width: 100%;
-				@media (max-width: 600px) {
-					padding: 10px;
-				}
+  .whatsbmc {
+    margin: 109px 0 0;
+    padding: 0;
+    @media (max-width: 600px) {
+      margin: 20px 0 0;
+    }
+    .sliders {
+      margin: 0 auto 90px;
+      width: 100%;
+      max-width: 1440px;
+      padding: 0;
+      @media (max-width: 600px) {
+        margin: 0 auto 20px;
+      }
+      div img {
+        width: 250px;
+        margin: 12px;
+        @media (max-width: 600px) {
+          width: 140px;
+          margin: 3px;
+        }
+      }
+    }
+    h2 {
+      text-align: center;
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
+    }
+    p {
+      max-width: 1197px;
+      text-align: center;
+      margin: 94px auto;
+      @media (max-width: 600px) {
+        font-size: 14px;
+        margin: 20px auto;
+        text-align: left;
+        padding: 0 20px;
+      }
+    }
+  }
+  .bmcRewards {
+    h2 {
+      text-align: center;
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
+    }
+    p {
+      text-align: center;
+      @media (max-width: 600px) {
+        font-size: 16px;
+      }
+    }
+    .rewardsHalf {
+      max-width: 1200px;
+      width: 100%;
+      margin: 100px auto;
+      @include centerBox();
+      @media (max-width: 600px) {
+        margin: 20px auto;
+      }
+      img {
+        padding: 10px;
+        max-width: 510px;
+        width: 100%;
+        margin: 0 auto;
+        @media (max-width: 600px) {
+          max-width: 210px;
+        }
+      }
+      .rewardsContent {
+        max-width: 690px;
+        width: 100%;
+        @media (max-width: 600px) {
+          padding: 10px;
+        }
 
-				.blkBar {
-					background-color: $blackColor;
-					border-radius: 42px;
-					@include centerBox(space-between, center);
-					font-size: 36px;
-					margin-bottom: 30px;
-					@media (max-width: 600px) {
-						font-size: 16px;
-					}
-					span {
-						padding: 10px 40px;
-						text-align: center;
-						font-weight: 400;
-						color: white;
-						@media (max-width: 600px) {
-							padding: 15px 25px;
-						}
-						&:first-child {
-							font-weight: 800;
-						}
-					}
-				}
-				p {
-					font-size: 36px;
-					margin-top: 48px;
-					@media (max-width: 600px) {
-						font-size: 14px;
-					}
-				}
-			}
-		}
-	}
-	.ultraMiners {
-		margin: 100px auto;
-		@media (max-width: 600px) {
-			margin: 20px auto;
-		}
-		h2 {
-			text-align: center;
-			@media (max-width: 600px) {
-				font-size: 40px;
-			}
-		}
-		p {
-			text-align: center;
-			font-size: 26px;
-			font-weight: 800;
-			@media (max-width: 600px) {
-				font-size: 16px;
-			}
-		}
-		.blkBox {
-			background-color: $blackColor;
-			margin: 50px 0;
-			width: 100%;
-			p {
-				color: white;
-				max-width: 1020px;
-				width: 100%;
-				text-align: center;
-				margin: 0 auto;
-				padding: 61px 10px;
-				font-weight: 400;
-				font-size: 36px;
-				@media (max-width: 600px) {
-					font-size: 16px;
-					padding: 30px 20px;
-				}
-				strong {
-					font-weight: 800;
-				}
-			}
-		}
-	}
-	.burningGraphic {
-		padding: 80px 10px;
-		text-align: center;
-		@media (max-width: 600px) {
-			padding: 10px;
-		}
+        .blkBar {
+          background-color: $blackColor;
+          border-radius: 42px;
+          @include centerBox(space-between, center);
+          font-size: 36px;
+          margin-bottom: 30px;
+          @media (max-width: 600px) {
+            font-size: 16px;
+          }
+          span {
+            padding: 10px 40px;
+            text-align: center;
+            font-weight: 400;
+            color: white;
+            @media (max-width: 600px) {
+              padding: 15px 25px;
+            }
+            &:first-child {
+              font-weight: 800;
+            }
+          }
+        }
+        p {
+          font-size: 36px;
+          margin-top: 48px;
+          @media (max-width: 600px) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  .ultraMiners {
+    margin: 100px auto;
+    @media (max-width: 600px) {
+      margin: 20px auto;
+    }
+    h2 {
+      text-align: center;
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
+    }
+    p {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 800;
+      @media (max-width: 600px) {
+        font-size: 16px;
+      }
+    }
+    .blkBox {
+      background-color: $blackColor;
+      margin: 50px 0;
+      width: 100%;
+      p {
+        color: white;
+        max-width: 1020px;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        padding: 61px 10px;
+        font-weight: 400;
+        font-size: 36px;
+        @media (max-width: 600px) {
+          font-size: 16px;
+          padding: 30px 20px;
+        }
+        strong {
+          font-weight: 800;
+        }
+      }
+    }
+  }
+  .burningGraphic {
+    padding: 80px 10px;
+    text-align: center;
+    @media (max-width: 600px) {
+      padding: 10px;
+    }
 
-		img {
-			max-width: 493px;
-			width: 100%;
-			height: auto;
-			margin: 0 auto 100px;
-			@media (max-width: 600px) {
-				margin: 0 auto 20px;
-			}
-		}
-		p {
-			max-width: 996px;
-			width: 100%;
-			text-align: center;
-			margin: 0 auto;
-			@media (max-width: 600px) {
-				font-size: 16px;
-				margin-bottom: 30px;
-			}
-		}
-	}
-	.ultraMinersCat {
-		background-image: url('../assets/desktop/universe.png');
-		background-size: cover;
-		background-repeat: no-repeat;
-		@include centerBox(space-evenly, center);
-		padding: 20px;
-		figure {
-			text-align: center;
-			@media (max-width: 600px) {
-				margin-bottom: 30px;
-			}
-			img {
-				max-width: 370px;
-				width: 100%;
-				height: auto;
-				@media (max-width: 600px) {
-					max-width: 150px;
-				}
-			}
-			figcaption {
-				margin-top: 15px;
-				text-align: center;
-				color: white;
-				font-size: 48px;
-				font-family: $titleFont;
-				@media (max-width: 600px) {
-					font-size: 18px;
-				}
-			}
-		}
-	}
-	.hashToken {
-		padding: 100px 0px;
-		@media (max-width: 600px) {
-			padding: 20px 0;
-		}
-		h2 {
-			text-align: center;
-			@media (max-width: 600px) {
-				font-size: 21px;
-			}
-		}
-		.hashBox {
-			@include centerBox(space-between, center);
-			img {
-				max-width: 510px;
-				width: 100%;
-				height: auto;
-				margin: 0 auto;
-				@media (max-width: 600px) {
-					max-width: 167px;
-					margin: 20px auto;
-				}
-			}
-			p {
-				background-color: $blackColor;
-				color: white;
-				font-size: 36px;
-				padding: 92px;
-				margin: 0;
-				max-width: 721px;
-				width: 100%;
-				@media (max-width: 600px) {
-					background-color: $color1;
-					color: $blackColor;
-					font-size: 16px;
-					padding: 20px;
-					max-width: 231px;
-					margin: 0 auto;
-				}
-			}
-		}
-		.earnHash {
-			max-width: 1173px;
-			width: 100%;
-			height: auto;
-			margin: 100px auto;
-			display: flex;
-			@media (max-width: 600px) {
-				max-width: 306px;
-				margin: 20px auto;
-			}
-		}
+    img {
+      max-width: 493px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto 100px;
+      @media (max-width: 600px) {
+        margin: 0 auto 20px;
+      }
+    }
+    p {
+      max-width: 996px;
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      @media (max-width: 600px) {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .ultraMinersCat {
+    background-image: url('../assets/desktop/universe.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include centerBox(space-evenly, center);
+    padding: 20px;
+    figure {
+      text-align: center;
+      @media (max-width: 600px) {
+        margin-bottom: 30px;
+      }
+      img {
+        max-width: 370px;
+        width: 100%;
+        height: auto;
+        @media (max-width: 600px) {
+          max-width: 150px;
+        }
+      }
+      figcaption {
+        margin-top: 15px;
+        text-align: center;
+        color: white;
+        font-size: 48px;
+        font-family: $titleFont;
+        @media (max-width: 600px) {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .hashToken {
+    padding: 100px 0px;
+    @media (max-width: 600px) {
+      padding: 20px 0;
+    }
+    h2 {
+      text-align: center;
+      @media (max-width: 600px) {
+        font-size: 21px;
+      }
+    }
+    .hashBox {
+      @include centerBox(space-between, center);
+      img {
+        max-width: 510px;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        @media (max-width: 600px) {
+          max-width: 167px;
+          margin: 20px auto;
+        }
+      }
+      p {
+        background-color: $blackColor;
+        color: white;
+        font-size: 36px;
+        padding: 92px;
+        margin: 0;
+        max-width: 721px;
+        width: 100%;
+        @media (max-width: 600px) {
+          background-color: $color1;
+          color: $blackColor;
+          font-size: 16px;
+          padding: 20px;
+          max-width: 231px;
+          margin: 0 auto;
+        }
+      }
+    }
+    .earnHash {
+      max-width: 1173px;
+      width: 100%;
+      height: auto;
+      margin: 100px auto;
+      display: flex;
+      @media (max-width: 600px) {
+        max-width: 306px;
+        margin: 20px auto;
+      }
+    }
 
-		p {
-			text-align: center;
-			max-width: 1200px;
-			width: 100%;
-			margin: 20px auto;
-			@media (max-width: 600px) {
-				margin: 20px 0;
-				background-color: $blackColor;
-				color: white;
-				font-size: 16px;
-				padding: 23px 34px;
-			}
-		}
-	}
-	.theDreamTeam {
-		h2 {
-			text-align: center;
-			@media (max-width: 600px) {
-				font-size: 32px;
-			}
-		}
-		.teamBox {
-			@include centerBox(space-evenly, center);
-			max-width: 1000px;
-			margin: 50px auto;
-			figure {
-				position: relative;
-				margin-bottom: 60px;
-				img {
-					border-radius: 16px;
-					max-width: 400px;
-					height: auto;
-					z-index: 1;
-					@media (max-width: 600px) {
-						max-width: 255px;
-					}
-				}
-				figcaption {
-					z-index: 2;
-					position: absolute;
-					background-color: $blackColor;
-					color: $color1;
-					width: 321px;
-					bottom: -30px;
-					left: 44px;
-					border-radius: 16px;
-					padding: 10px 5px;
-					@media (max-width: 600px) {
-						width: 202px;
-						bottom: -20px;
-						left: 30px;
-						&.edClassBox {
-							left: 10px;
-							width: 235px;
-						}
-					}
-					h3 {
-						font-size: 26px;
-						text-align: center;
-						margin-bottom: 5px;
-						&.edClass {
-							font-size: 16px;
-						}
-						@media (max-width: 600px) {
-							font-size: 20px;
-							&.edClass {
-								font-size: 12px;
-							}
-						}
-					}
-					p {
-						font-size: 21px;
-						text-align: center;
-						@media (max-width: 600px) {
-							font-size: 12px;
-						}
-					}
-				}
-			}
-		}
-	}
+    p {
+      text-align: center;
+      max-width: 1200px;
+      width: 100%;
+      margin: 20px auto;
+      @media (max-width: 600px) {
+        margin: 20px 0;
+        background-color: $blackColor;
+        color: white;
+        font-size: 16px;
+        padding: 23px 34px;
+      }
+    }
+  }
+  .theDreamTeam {
+    h2 {
+      text-align: center;
+      @media (max-width: 600px) {
+        font-size: 32px;
+      }
+    }
+    .teamBox {
+      @include centerBox(space-evenly, center);
+      max-width: 1000px;
+      margin: 50px auto;
+      figure {
+        position: relative;
+        margin-bottom: 60px;
+        img {
+          border-radius: 16px;
+          max-width: 400px;
+          height: auto;
+          z-index: 1;
+          @media (max-width: 600px) {
+            max-width: 255px;
+          }
+        }
+        figcaption {
+          z-index: 2;
+          position: absolute;
+          background-color: $blackColor;
+          color: $color1;
+          width: 321px;
+          bottom: -30px;
+          left: 44px;
+          border-radius: 16px;
+          padding: 10px 5px;
+          @media (max-width: 600px) {
+            width: 202px;
+            bottom: -20px;
+            left: 30px;
+            &.edClassBox {
+              left: 10px;
+              width: 235px;
+            }
+          }
+          h3 {
+            font-size: 26px;
+            text-align: center;
+            margin-bottom: 5px;
+            &.edClass {
+              font-size: 16px;
+            }
+            @media (max-width: 600px) {
+              font-size: 20px;
+              &.edClass {
+                font-size: 12px;
+              }
+            }
+          }
+          p {
+            font-size: 21px;
+            text-align: center;
+            @media (max-width: 600px) {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

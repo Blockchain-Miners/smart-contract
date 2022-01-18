@@ -1,323 +1,281 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import NumberFormat from 'react-number-format';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+// import NumberFormat from 'react-number-format';
+import bmcLogo from '../../assets/bcm-logo.png';
+import minerLogo from '../../assets/bm-logo-64.png';
+import burnForUltra from '../../assets/desktop/BurnForUltra.png';
+import useMediaQuery from '../../hooks/useMediaQuery';
 import { connect } from '../../redux/blockchain/blockchainActions';
 import { fetchData } from '../../redux/data/dataActions';
-import { fetchMint } from '../../redux/mint/mintActions';
-import logo from '../../assets/bm-logo-64.png';
-import twitter from '../../assets/old-page/twitter-icon.png';
-import discord from '../../assets/old-page/discord.png';
-import extraIcon from '../../assets/old-page/icon-.png';
-import twitterWhite from '../../assets/old-page/twitter.png';
-import discordWhite from '../../assets/old-page/discord-white.png';
-import opensea from '../../assets/old-page/open-sea.png';
-import borderBottom from '../../assets/old-page/up-top-image.svg';
-import borderBottomT from '../../assets/old-page/up-top-image2.svg';
-import greenMiner from '../../assets/old-page/GreenMiner.png';
-import Navigation from '../blockComponent/Navigation';
+import Footer from '../blockComponent/Footer';
+import BurnWindow from '../BurnWindow/BurnWindow';
 
 function Burn() {
-	const dispatch = useDispatch();
-	const blockchain = useSelector((state) => state.blockchain);
-	const data = useSelector((state) => state.data);
-	const dataT = useSelector((state) => state?.mint);
-	const [claimingNft, setClaimingNft] = useState(false);
-	const [feedback, setFeedback] = useState(`Public Mint`);
-	const [mintAmount, setMintAmount] = useState(1);
-	const [CONFIG, SET_CONFIG] = useState({
-		CONTRACT_ADDRESS: '',
-		SCAN_LINK: '',
-		NETWORK: {
-			NAME: '',
-			SYMBOL: '',
-			ID: 0,
-		},
-		NFT_NAME: '',
-		SYMBOL: '',
-		MAX_SUPPLY: 1,
-		WEI_COST: 0,
-		DISPLAY_COST: 0,
-		GAS_LIMIT: 0,
-		MARKETPLACE: '',
-		MARKETPLACE_LINK: '',
-		SHOW_BACKGROUND: false,
-	});
+  const dispatch = useDispatch();
+  const blockchain = useSelector((state) => state.blockchain);
 
-	const claimNFTs = async () => {
-		let cost = CONFIG.WEI_COST;
-		let gasLimit = CONFIG.GAS_LIMIT;
-		let totalCostWei = String(cost * mintAmount);
-		let totalGasLimited = await blockchain.smartContract.methods
-			.mint(mintAmount)
-			.estimateGas({ from: blockchain.account, value: totalCostWei });
-		let totalGasLimit = Math.floor(parseInt(totalGasLimited * 1.3));
-		// console.log('Cost: ', totalCostWei);
-		// console.log('Gas limit: ', totalGasLimit);
-		setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
-		setClaimingNft(true);
-		blockchain.smartContract.methods.mint(mintAmount);
-		blockchain.smartContract.methods
-			.mint(mintAmount)
-			.send({
-				gasLimit: String(totalGasLimit),
-				to: CONFIG.CONTRACT_ADDRESS,
-				from: blockchain.account,
-				value: totalCostWei,
-			})
-			.once('error', (err) => {
-				console.log(err);
-				setFeedback('Error minting please contact admin.');
-				setClaimingNft(false);
-			})
-			.then((receipt) => {
-				console.log(receipt);
-				setFeedback(
-					`WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
-				);
-				setClaimingNft(false);
-				dispatch(fetchData(blockchain.account));
-			});
-	};
+  const [tokenData, setTokenData] = useState([]);
+  const [isBurnAlive, setIsBurnAlive] = useState(null);
 
-	const decrementMintAmount = () => {
-		let newMintAmount = mintAmount - 1;
-		if (newMintAmount < 1) {
-			newMintAmount = 1;
-		}
-		setMintAmount(newMintAmount);
-	};
+  useEffect(() => {
+    if (blockchain.account && blockchain.umSmartContract) {
+      blockchain.umSmartContract.methods
+        .getSynthesizerState()
+        .call({ from: blockchain.account })
+        .then((data) => {
+          setIsBurnAlive(data);
+        })
+        .catch((error) => {
+          alert('An error occured getting burn date, please refresh.');
+          console.log('error grabbing synthesizer state', error);
+        });
+    }
+  }, [blockchain]);
 
-	const incrementMintAmount = () => {
-		let newMintAmount = mintAmount + 1;
-		if (newMintAmount > 8) {
-			newMintAmount = 8;
-		}
-		setMintAmount(newMintAmount);
-	};
+  // Burning page useState
+  const hashDisplay = '9,410';
 
-	const getConfig = async () => {
-		const configResponse = await fetch('/config/config.json', {
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-			},
-		});
-		const config = await configResponse.json();
-		SET_CONFIG(config);
-	};
+  // query by function
+  const isdesktop = useMediaQuery('(max-width: 600px)');
 
-	const getData = () => {
-		if (blockchain.account !== '' && blockchain.smartContract !== null) {
-			dispatch(fetchData(blockchain.account));
-		}
-	};
+  // BMC original page
+  const [CONFIG, SET_CONFIG] = useState({
+    CONTRACT_ADDRESS: '',
+    SCAN_LINK: '',
+    NETWORK: {
+      NAME: '',
+      SYMBOL: '',
+      ID: 0,
+    },
+    NFT_NAME: '',
+    SYMBOL: '',
+    MAX_SUPPLY: 1,
+    WEI_COST: 0,
+    DISPLAY_COST: 0,
+    GAS_LIMIT: 0,
+    MARKETPLACE: '',
+    MARKETPLACE_LINK: '',
+    SHOW_BACKGROUND: false,
+  });
 
-	const getMint = () => {
-		if (blockchain.account !== '' && blockchain.smartContract !== null) {
-			dispatch(fetchMint(blockchain.account));
-		}
-	};
+  useEffect(() => {
+    (async () => {
+      if (blockchain.account) {
+        const configResponse = await fetch('/config/config.json', {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        });
+        const CONFIG = await configResponse.json();
+        fetch(
+          `${CONFIG.BASE_ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}`,
+        )
+          .then((data) => data.json())
+          .then((data) => {
+            if (data.assets) {
+              setTokenData(data.assets);
+            } else {
+              alert('Something went wrong loading your BMC assets');
+            }
+          })
+          .catch((error) => {
+            alert('Something went wrong loading your BMC assets');
+            console.log('error loading assets', error);
+          });
+      }
+    })();
+  }, [blockchain]);
+  // const data = useSelector((state) => state.data);
+  // const dataT = useSelector((state) => state?.mint);
+  // const [claimingNft, setClaimingNft] = useState(false);
+  // const [feedback, setFeedback] = useState(`Public Mint`);
+  // const [mintAmount, setMintAmount] = useState(1);
 
-	useEffect(() => {
-		getConfig();
-		getData();
-		getMint();
-	}, [blockchain.account]);
+  //  BMC original mint function
 
-	// useEffect(() => {
-	// 	getData();
-	// }, [blockchain.account]);
+  // const claimNFTs = async () => {
+  // 	let cost = CONFIG.WEI_COST;
+  // 	let gasLimit = CONFIG.GAS_LIMIT;
+  // 	let totalCostWei = String(cost * mintAmount);
+  // 	let totalGasLimited = await blockchain.smartContract.methods
+  // 		.mint(mintAmount)
+  // 		.estimateGas({ from: blockchain.account, value: totalCostWei });
+  // 	let totalGasLimit = Math.floor(parseInt(totalGasLimited * 1.3));
+  // 	// console.log('Cost: ', totalCostWei);
+  // 	// console.log('Gas limit: ', totalGasLimit);
+  // 	setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+  // 	setClaimingNft(true);
+  // 	blockchain.smartContract.methods.mint(mintAmount);
+  // 	blockchain.smartContract.methods
+  // 		.mint(mintAmount)
+  // 		.send({
+  // 			gasLimit: String(totalGasLimit),
+  // 			to: CONFIG.CONTRACT_ADDRESS,
+  // 			from: blockchain.account,
+  // 			value: totalCostWei,
+  // 		})
+  // 		.once('error', (err) => {
+  // 			console.log(err);
+  // 			setFeedback('Error minting please contact admin.');
+  // 			setClaimingNft(false);
+  // 		})
+  // 		.then((receipt) => {
+  // 			console.log(receipt);
+  // 			setFeedback(
+  // 				`WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+  // 			);
+  // 			setClaimingNft(false);
+  // 			dispatch(fetchData(blockchain.account));
+  // 		});
+  // };
 
-	// useEffect(() => {
-	// 	getMint();
-	// }, [blockchain.account]);
+  // const decrementMintAmount = () => {
+  // 	let newMintAmount = mintAmount - 1;
+  // 	if (newMintAmount < 1) {
+  // 		newMintAmount = 1;
+  // 	}
+  // 	setMintAmount(newMintAmount);
+  // };
 
-	console.log('data', blockchain.account);
+  // const incrementMintAmount = () => {
+  // 	let newMintAmount = mintAmount + 1;
+  // 	if (newMintAmount > 8) {
+  // 		newMintAmount = 8;
+  // 	}
+  // 	setMintAmount(newMintAmount);
+  // };
 
-	return (
-		<>
-			<div className="burnPage">
-				<div className="iconsBox">
-					<div className="logo">
-						<img src={logo} alt="Logo" />
-						<h1>BLOCKCHAIN MINERS</h1>
-					</div>
-					<div className="socialMedia">
-						<a
-							href="https://twitter.com/BMC_NFT"
-							target="_blank"
-							rel="noreferrer"
-						>
-							{' '}
-							<img src={twitter} alt="Logo" />
-						</a>
-						<a
-							href="https://discord.com/invite/blockchainminers"
-							target="_blank"
-							rel="noreferrer"
-						>
-							{' '}
-							<img src={discord} alt="Logo" />
-						</a>
-						<a
-							href="https://opensea.io/collection/blockchainminersclubofficial"
-							target="_blank"
-							rel="noreferrer"
-						>
-							<img src={extraIcon} alt="Logo" />
-						</a>
-					</div>
-					<Navigation />
-				</div>
+  const getConfig = async () => {
+    const configResponse = await fetch('/config/config.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+    const config = await configResponse.json();
+    SET_CONFIG(config);
+  };
 
-				<div className="wrapperCont">
-					<div>
-						<p>
-							{/* <StyledLink target={'_blank'} href={CONFIG.SCAN_LINK}>
-							{truncate(CONFIG.CONTRACT_ADDRESS, 15)}
-						</StyledLink> */}
-						</p>
-						<div className="blueMiner">
-							<img src={greenMiner} alt="Green Miner" />
-						</div>
+  // const getMint = () => {
+  // 	if (blockchain.account !== '' && blockchain.smartContract !== null) {
+  // 		dispatch(fetchMint(blockchain.account));
+  // 	}
+  // };
 
-						{Number(data?.totalSupply) >= CONFIG.MAX_SUPPLY ? (
-							<>
-								<p>The sale has ended.</p>
-								<p>You can still find {CONFIG.NFT_NAME} on</p>
+  const getData = () => {
+    if (blockchain.account !== '' && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+    }
+  };
 
-								<a
-									target="_blank"
-									rel="noreferrer"
-									href={CONFIG.MARKETPLACE_LINK}
-								>
-									{CONFIG.MARKETPLACE}
-								</a>
-							</>
-						) : (
-							<>
-								{blockchain.account === '' ||
-								blockchain.smartContract === null ? (
-									<div className="connectBox">
-										<button
-											className="btnConnect"
-											onClick={(e) => {
-												e.preventDefault();
-												dispatch(connect());
-												getData();
-											}}
-										>
-											Connect wallet
-										</button>
-										{blockchain.errorMsg !== '' ? (
-											<>
-												<h4>{blockchain.errorMsg}</h4>
-											</>
-										) : null}
-									</div>
-								) : (
-									<div className="mintBox">
-										<h3>{feedback}</h3>
-										{data?.totalSupply === data?.totalSupply ? (
-											<>
-												{' '}
-												<div>
-													<h2 className="totalSupply">
-														<NumberFormat
-															value={data?.totalSupply}
-															displayType={'text'}
-															thousandSeparator={true}
-														/>
-														/
-														<NumberFormat
-															value={11111}
-															displayType={'text'}
-															thousandSeparator={true}
-														/>
-													</h2>
-													<div className="quantityBtns">
-														<a
-															style={{ lineHeight: 0.4 }}
-															disabled={claimingNft ? 1 : 0}
-															onClick={(e) => {
-																e.preventDefault();
-																decrementMintAmount();
-															}}
-															className="quantityBtnMin"
-														>
-															-
-														</a>
+  // END BMC original mint function
+  useEffect(() => {
+    getConfig();
+    getData();
+  }, [blockchain.account]);
 
-														<p className="amount">{mintAmount}</p>
+  return (
+    <>
+      <div className='mainContainer burnPage' isdesktop={isdesktop}>
+        <div className='headerBoxTopM'>
+          <div className='righBoxTop'>
+            <img src={minerLogo} alt='BMC Logo' className='bmcLogo' />
+            <div className='hashDisplay'>
+              {blockchain.account === '' || blockchain.smartContract === null ? (
+                <div className='connectBox'>
+                  <button
+                    className='btnConnect'
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(connect());
+                      getData();
+                    }}
+                  >
+                    Connect wallet
+                  </button>
+                  {blockchain.errorMsg !== '' ? (
+                    <>
+                      <h4>{blockchain.errorMsg}</h4>
+                    </>
+                  ) : null}
+                </div>
+              ) : (
+                <h3>$HASH {hashDisplay}</h3>
+              )}
+              <h3>$HASH {hashDisplay}</h3>
+            </div>
+          </div>
+        </div>
+        <header>
+          <div className='headerBoxTop'>
+            <Link to='/'>
+              <img src={bmcLogo} alt='BMC Logo' className='bmcLogo' />
+            </Link>
 
-														<a
-															disabled={claimingNft ? 1 : 0}
-															onClick={(e) => {
-																e.preventDefault();
-																incrementMintAmount();
-															}}
-															className="quantityBtn"
-														>
-															+
-														</a>
-													</div>
-												</div>
-												<>
-													<h5>
-														{(CONFIG.DISPLAY_COST * mintAmount).toFixed(2)}{' '}
-														{CONFIG.NETWORK.SYMBOL} + GAS
-													</h5>
-													<button
-														disabled={claimingNft ? 8 : 0}
-														onClick={(e) => {
-															e.preventDefault();
-															claimNFTs();
-															getData();
-														}}
-														className="btnMint"
-													>
-														{claimingNft ? 'BUSY' : 'Mint'}
-													</button>
-												</>{' '}
-											</>
-										) : (
-											<h2 className="soldOut">Sold Out!!</h2>
-										)}
-									</div>
-								)}
-							</>
-						)}
-					</div>
-				</div>
-
-				<img src={borderBottom} alt="border" className="yellowDivisor" />
-				<img src={borderBottomT} alt="border" className="yellowDivisor2" />
-			</div>
-			<div className="socialMediaBottom">
-				<a href="https://twitter.com/BMC_NFT" target="_blank" rel="noreferrer">
-					{' '}
-					<img src={twitterWhite} alt="Logo" />
-				</a>
-				<a
-					href="https://discord.com/invite/blockchainminers"
-					target="_blank"
-					rel="noreferrer"
-				>
-					{' '}
-					<img src={discordWhite} alt="Logo" />
-				</a>
-				<a
-					href="https://opensea.io/collection/blockchainminersclubofficial"
-					target="_blank"
-					rel="noreferrer"
-				>
-					{' '}
-					<img src={opensea} alt="Logo" />
-				</a>
-			</div>
-		</>
-	);
+            <div className='righBoxTop'>
+              <div className='hashDisplay'>
+                {blockchain.account === '' || blockchain.smartContract === null ? (
+                  <div className='connectBox'>
+                    <button
+                      className='btnConnect'
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(connect());
+                        getData();
+                      }}
+                    >
+                      <h3>Connect wallet</h3>
+                    </button>
+                    {blockchain.errorMsg !== '' ? (
+                      <>
+                        <h4>{blockchain.errorMsg}</h4>
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                ) : (
+                  // <h3>$HASH {hashDisplay}</h3>
+                  <h3>Connected</h3>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className='headerBoxBottom'>
+            <img src={burnForUltra} alt='Burn for ultra' />
+            {blockchain.account === '' || blockchain.smartContract === null ? (
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(connect());
+                  getData();
+                }}
+              >
+                Connect Wallet
+              </a>
+            ) : isBurnAlive ? (
+              <BurnWindow
+                tokenData={tokenData}
+                blockchain={blockchain}
+                setTokenData={setTokenData}
+              />
+            ) : isBurnAlive === null ? (
+              <h3>Loading...</h3>
+            ) : (
+              <div id='burnUltraLock'>
+                <h3 style={{ textAlign: 'center' }}>
+                  Burning for Ultra Miners will happen on <span>01/18/2022 at 6:00PM PST</span>
+                </h3>
+              </div>
+            )}
+          </div>
+        </header>
+        <Footer />
+      </div>
+    </>
+  );
 }
 
 export default Burn;
