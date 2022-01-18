@@ -16,6 +16,22 @@ function Burn() {
   const blockchain = useSelector((state) => state.blockchain);
 
   const [tokenData, setTokenData] = useState([]);
+  const [isBurnAlive, setIsBurnAlive] = useState(null);
+
+  useEffect(() => {
+    if (blockchain.account && blockchain.umSmartContract) {
+      blockchain.umSmartContract.methods
+        .getSynthesizerState()
+        .call({ from: blockchain.account })
+        .then((data) => {
+          setIsBurnAlive(data);
+        })
+        .catch((error) => {
+          alert('An error occured getting burn date, please refresh.');
+          console.log('error grabbing synthesizer state', error);
+        });
+    }
+  }, [blockchain]);
 
   // Burning page useState
   const hashDisplay = '9,410';
@@ -239,17 +255,23 @@ function Burn() {
               >
                 Connect Wallet
               </a>
-            ) : (
+            ) : isBurnAlive ? (
               <BurnWindow
                 tokenData={tokenData}
                 blockchain={blockchain}
                 setTokenData={setTokenData}
               />
+            ) : isBurnAlive === null ? (
+              <h3>Loading...</h3>
+            ) : (
+              <h3 style={{ textAlign: 'center' }}>
+                Burning for Ultra Miners will happen on <span>01 / 18 / 2022 at 6:00PM PST</span>
+              </h3>
             )}
           </div>
         </header>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }
