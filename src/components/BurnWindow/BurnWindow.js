@@ -4,6 +4,8 @@ const BurnWindow = (props) => {
   const { tokenData, blockchain, setTokenData } = props;
   const [selectedMiners, setSelectedMiners] = useState([]);
   const [isBmcUserApproved, setIsBmcUserApproved] = useState(false);
+  const [isBurnButtonDisabled, setIsBurnButtonDisabled] = useState(false);
+  const [isApproveButtonDisabled, setIsApproveButtonDisabled] = useState(false);
 
   const isTokenSelected = (tokenId) => {
     return selectedMiners.includes(tokenId);
@@ -66,70 +68,95 @@ const BurnWindow = (props) => {
         {/* Padding for bottom */}
         <div style={{ flexBasis: '100%', height: '50px' }} />
       </div>
-      <button
-        disabled={
-          (selectedMiners.length === 0 || selectedMiners.length % 2 !== 0) &&
-          blockchain.account &&
-          blockchain.emSmartContract
-        }
-        className='headerBoxBurnButton'
-        onClick={async (e) => {
-          e.preventDefault();
-          const configResponse = await fetch('/config/config.json', {
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json',
-            },
-          });
-          const CONFIG = await configResponse.json();
-          const UM_CONTRACT_ADDRESS = CONFIG.ULTRA_MINER_CONTRACT_ADDRESS;
+      {isBmcUserApproved ? (
+        <button
+          disabled={
+            selectedMiners.length === 0 ||
+            selectedMiners.length % 2 !== 0 ||
+            !blockchain.account ||
+            !blockchain.umSmartContract ||
+            isBurnButtonDisabled
+          }
+          className='headerBoxBurnButton'
+          onClick={async (e) => {
+            e.preventDefault();
+            const configResponse = await fetch('/config/config.json', {
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+            });
+            const CONFIG = await configResponse.json();
 
-          if (!isBmcUserApproved) {
-            const approval = true;
+            const uintMiners = selectedMiners.map((tokenId) => parseInt(tokenId));
+
             const totalGasLimited = await blockchain.umSmartContract.methods
-              .setApprovalForAll(UM_CONTRACT_ADDRESS, approval)
+              .synthesizeManyUltraminers(uintMiners)
               .estimateGas({ from: blockchain.account, value: 0 });
-            await blockchain.umSmartContract.methods
-              .setApprovalForAll(UM_CONTRACT_ADDRESS, approval)
+
+            setIsBurnButtonDisabled(true);
+            blockchain.umSmartContract.methods
+              .synthesizeManyUltraminers(uintMiners)
               .send({
                 from: blockchain.account,
+                to: CONFIG.ULTRA_MINER_CONTRACT_ADDRESS,
                 gasLimit: String(Math.floor(parseInt(totalGasLimited * CONFIG.ADJUST_GAS))),
               })
+              .then((data) => {
+                setIsBurnButtonDisabled(false);
+                setSelectedMiners([]);
+                setTokenData((prev) => prev.filter((token) => !isTokenSelected(token.token_id)));
+                return data;
+              })
+              .catch((error) => {
+                setIsBurnButtonDisabled(false);
+                alert('Something went wrong while burning, please try again or contact an admin.');
+                console.log('burn failed error:', error);
+              });
+          }}
+        >
+          {isBurnButtonDisabled ? <h3>WAITING FOR TRANSACTION</h3> : <h3>BURN FOR ULTRA</h3>}
+        </button>
+      ) : (
+        <button
+          disabled={isApproveButtonDisabled}
+          className='headerBoxBurnButton'
+          onClick={async (e) => {
+            e.preventDefault();
+            const configResponse = await fetch('/config/config.json', {
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+            });
+            const CONFIG = await configResponse.json();
+
+            setIsApproveButtonDisabled(true);
+            await blockchain.smartContract.methods
+              .setApprovalForAll(CONFIG.ULTRA_MINER_CONTRACT_ADDRESS, true)
+              .send({
+                from: blockchain.account,
+              })
               .then(() => {
+                setIsApproveButtonDisabled(false);
                 setIsBmcUserApproved(true);
               })
               .catch((error) => {
-                alert('Something went wrong while approving, please contact an admin.');
+                setIsApproveButtonDisabled(false);
+                alert(
+                  'Something went wrong while approving, please try again or contact an admin.',
+                );
                 console.log('approve failed error:', error);
               });
-            return;
-          }
-
-          const uintMiners = selectedMiners.map((tokenId) => parseInt(tokenId));
-
-          const totalGasLimited = await blockchain.umSmartContract.methods
-            .synthesizeManyUltraminers(uintMiners)
-            .estimateGas({ from: blockchain.account, value: 0 });
-
-          blockchain.umSmartContract.methods
-            .synthesizeManyUltraminers(uintMiners)
-            .send({
-              from: blockchain.account,
-              to: UM_CONTRACT_ADDRESS,
-              gasLimit: String(Math.floor(parseInt(totalGasLimited * CONFIG.ADJUST_GAS))),
-            })
-            .then((data) => {
-              setTokenData((prev) => prev.filter((token) => !isTokenSelected(token.token_id)));
-              return data;
-            })
-            .catch((error) => {
-              alert('Something went wrong while burning, please contact an admin.');
-              console.log('burn failed error:', error);
-            });
-        }}
-      >
-        <h3>{isBmcUserApproved ? 'BURN FOR ULTRA' : 'APPROVE FOR ULTRA BURN'}</h3>
-      </button>
+          }}
+        >
+          {isApproveButtonDisabled ? (
+            <h3>WAITING FOR TRANSACTION</h3>
+          ) : (
+            <h3>APPROVE FOR ULTRA BURN</h3>
+          )}
+        </button>
+      )}
     </div>
   );
 };
