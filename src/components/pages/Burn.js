@@ -79,7 +79,7 @@ function Burn() {
               },
             };
         fetch(
-          `${CONFIG.BASE_ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}`,
+          `${CONFIG.BASE_ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}&limit=50`,
           options,
         )
           .then((data) => data.json())
