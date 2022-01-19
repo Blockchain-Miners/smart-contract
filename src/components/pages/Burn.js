@@ -69,8 +69,18 @@ function Burn() {
           },
         });
         const CONFIG = await configResponse.json();
+        const options = CONFIG.BASE_ASSET_URL.includes('testnets')
+          ? { method: 'GET' }
+          : {
+              method: 'GET',
+              headers: {
+                Accept: 'application/json',
+                'X-API-KEY': '237f9688dc824aff8013f21bfa667271',
+              },
+            };
         fetch(
           `${CONFIG.BASE_ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}`,
+          options,
         )
           .then((data) => data.json())
           .then((data) => {
