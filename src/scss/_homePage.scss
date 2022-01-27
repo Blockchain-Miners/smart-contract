@@ -32,12 +32,11 @@
   }
   header {
     padding: 44px;
-    background-image: url('../assets/desktop/topBackground.png');
-    background-repeat: no-repeat;
+    background: url('../assets/desktop/topBackground.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    @media (max-width: 600px) {
-      background-image: url('../assets/mobile/topBackground.png');
-    }
     .headerBoxTop {
       width: 100%;
       @include centerBox(space-between, center);
