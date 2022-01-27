@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Burn from './components/pages/Burn';
 import Home from './components/pages/Home';
+import Claim from './components/pages/Claim/Claim';
 
 function App() {
   return (
@@ -11,8 +12,11 @@ function App() {
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route path='/burn'>
+        <Route exact path='/burn'>
           <Burn />
+        </Route>
+        <Route exact path='/claim'>
+          <Claim />
         </Route>
       </Switch>
     </>

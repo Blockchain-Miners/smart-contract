@@ -37,9 +37,6 @@ function Burn() {
   // Burning page useState
   const hashDisplay = '9,410';
 
-  // query by function
-  const isdesktop = useMediaQuery('(max-width: 600px)');
-
   useEffect(() => {
     (async () => {
       if (blockchain.account) {
@@ -151,7 +148,7 @@ function Burn() {
 
   return (
     <>
-      <div className='mainContainer burnPage' isdesktop={isdesktop}>
+      <div className='mainContainer burnPage'>
         <div className='headerBoxTopM'>
           <div className='righBoxTop'>
             <img src={minerLogo} alt='BMC Logo' className='bmcLogo' />
