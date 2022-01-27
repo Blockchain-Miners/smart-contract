@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getAppConfig } from '../../service/config';
 
 const BurnWindow = (props) => {
   const { tokenData, blockchain, setTokenData } = props;
@@ -80,13 +81,7 @@ const BurnWindow = (props) => {
           className='headerBoxBurnButton'
           onClick={async (e) => {
             e.preventDefault();
-            const configResponse = await fetch('/config/config.json', {
-              headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-              },
-            });
-            const CONFIG = await configResponse.json();
+            const CONFIG = await getAppConfig();
 
             const uintMiners = selectedMiners.map((tokenId) => parseInt(tokenId));
 
@@ -124,13 +119,7 @@ const BurnWindow = (props) => {
             className='headerBoxBurnButton'
             onClick={async (e) => {
               e.preventDefault();
-              const configResponse = await fetch('/config/config.json', {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Accept: 'application/json',
-                },
-              });
-              const CONFIG = await configResponse.json();
+              const CONFIG = await getAppConfig();
 
               setIsApproveButtonDisabled(true);
               await blockchain.smartContract.methods

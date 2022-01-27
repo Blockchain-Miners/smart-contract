@@ -8,6 +8,7 @@ import burnForUltra from '../../assets/desktop/BurnForUltra.png';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { connect } from '../../redux/blockchain/blockchainActions';
 import { fetchData } from '../../redux/data/dataActions';
+import { getAppConfig } from '../../service/config';
 import Footer from '../blockComponent/Footer';
 import BurnWindow from '../BurnWindow/BurnWindow';
 
@@ -39,37 +40,11 @@ function Burn() {
   // query by function
   const isdesktop = useMediaQuery('(max-width: 600px)');
 
-  // BMC original page
-  const [CONFIG, SET_CONFIG] = useState({
-    CONTRACT_ADDRESS: '',
-    SCAN_LINK: '',
-    NETWORK: {
-      NAME: '',
-      SYMBOL: '',
-      ID: 0,
-    },
-    NFT_NAME: '',
-    SYMBOL: '',
-    MAX_SUPPLY: 1,
-    WEI_COST: 0,
-    DISPLAY_COST: 0,
-    GAS_LIMIT: 0,
-    MARKETPLACE: '',
-    MARKETPLACE_LINK: '',
-    SHOW_BACKGROUND: false,
-  });
-
   useEffect(() => {
     (async () => {
       if (blockchain.account) {
-        const configResponse = await fetch('/config/config.json', {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        });
-        const CONFIG = await configResponse.json();
-        const options = CONFIG.BASE_ASSET_URL.includes('testnets')
+        const CONFIG = await getAppConfig();
+        const options = CONFIG.ASSET_URL.includes('testnets')
           ? { method: 'GET' }
           : {
               method: 'GET',
@@ -79,7 +54,7 @@ function Burn() {
               },
             };
         fetch(
-          `${CONFIG.BASE_ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}`,
+          `${CONFIG.ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${CONFIG.CONTRACT_ADDRESS}`,
           options,
         )
           .then((data) => data.json())
@@ -157,17 +132,6 @@ function Burn() {
   // 	setMintAmount(newMintAmount);
   // };
 
-  const getConfig = async () => {
-    const configResponse = await fetch('/config/config.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-    const config = await configResponse.json();
-    SET_CONFIG(config);
-  };
-
   // const getMint = () => {
   // 	if (blockchain.account !== '' && blockchain.smartContract !== null) {
   // 		dispatch(fetchMint(blockchain.account));
@@ -182,7 +146,6 @@ function Burn() {
 
   // END BMC original mint function
   useEffect(() => {
-    getConfig();
     getData();
   }, [blockchain.account]);
 
