@@ -61,9 +61,19 @@ export const connect = () => {
             hpAbi,
             CONFIG.HASH_POWER_CONTRACT_ADDRESS,
           );
+          const HashSmartContractObj = new Web3EthContract(
+            hpAbi,
+            CONFIG.HASH_TOKEN.CONTRACT_ADDRESS,
+          );
+          const hashAmount = await HashSmartContractObj.methods
+            .balanceOf(accounts[0])
+            .call({ from: accounts[0] });
           dispatch(
             connectSuccess({
               account: accounts[0],
+              userData: {
+                hashToken: { amountWei: hashAmount, amountTotal: Web3.utils.fromWei(hashAmount) },
+              },
               smartContract: SmartContractObj,
               umSmartContract: UltraMinerSmartContractObj,
               hpSmartContract: HashPowerSmartContractObj,

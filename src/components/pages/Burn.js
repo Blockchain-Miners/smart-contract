@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 // import NumberFormat from 'react-number-format';
 import bmcLogo from '../../assets/bcm-logo.png';
 import minerLogo from '../../assets/bm-logo-64.png';
 import burnForUltra from '../../assets/desktop/BurnForUltra.png';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import claimImg from '../../assets/svg/claim.svg';
 import { connect } from '../../redux/blockchain/blockchainActions';
 import { fetchData } from '../../redux/data/dataActions';
 import { getAppConfig } from '../../service/config';
@@ -36,9 +37,6 @@ function Burn() {
 
   // Burning page useState
   const hashDisplay = '9,410';
-
-  // query by function
-  const isdesktop = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
     (async () => {
@@ -151,7 +149,7 @@ function Burn() {
 
   return (
     <>
-      <div className='mainContainer burnPage' isdesktop={isdesktop}>
+      <div className='mainContainer burnPage'>
         <div className='headerBoxTopM'>
           <div className='righBoxTop'>
             <img src={minerLogo} alt='BMC Logo' className='bmcLogo' />
@@ -188,6 +186,9 @@ function Burn() {
             </Link>
 
             <div className='righBoxTop'>
+              <NavLink to='/claim' style={{ marginRight: '10px' }}>
+                <img src={claimImg} alt='Burn' />
+              </NavLink>
               <div className='hashDisplay'>
                 {blockchain.account === '' || blockchain.smartContract === null ? (
                   <div className='connectBox'>
@@ -211,7 +212,7 @@ function Burn() {
                   </div>
                 ) : (
                   // <h3>$HASH {hashDisplay}</h3>
-                  <h3>Connected</h3>
+                  <h3>$HASH: {blockchain.userData.hashToken.amountTotal}</h3>
                 )}
               </div>
             </div>
