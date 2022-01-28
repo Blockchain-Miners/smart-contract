@@ -78,7 +78,7 @@ const ClaimWindow = (props) => {
             allAssets[x].isSelected = true;
           }
         }
-        setTokenData(allAssets.sort((a, b) => a.hashToClaim < b.hashToClaim));
+        setTokenData(allAssets.sort((a, b) => b.hashToClaim - a.hashToClaim));
       }
     })();
   }, [blockchain]);
