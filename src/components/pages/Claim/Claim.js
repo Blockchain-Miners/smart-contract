@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
@@ -16,8 +16,6 @@ const hashDisplay = '1000';
 function Claim() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
-
-  const [tokenData, setTokenData] = useState([]);
 
   const getData = () => {
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
@@ -94,15 +92,14 @@ function Claim() {
                   </div>
                 ) : (
                   // <h3>$HASH {hashDisplay}</h3>
-                  <h3>Connected</h3>
+                  <h3>$HASH: {blockchain.userData.hashToken.amountTotal}</h3>
                 )}
               </div>
             </div>
           </div>
           <div className='headerBoxBottom'>
             <img src={claimHashSvg} alt='Claim $hash' />
-            <ClaimWindow tokenData={tokenData} setTokenData={setTokenData} />
-            {(blockchain.account === '' || blockchain.smartContract === null) && (
+            {blockchain.account === '' || blockchain.smartContract === null ? (
               <a
                 onClick={(e) => {
                   e.preventDefault();
@@ -112,6 +109,8 @@ function Claim() {
               >
                 Connect Wallet
               </a>
+            ) : (
+              <ClaimWindow />
             )}
           </div>
         </header>

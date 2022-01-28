@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Burn from './components/pages/Burn';
-import Home from './components/pages/Home';
 import Claim from './components/pages/Claim/Claim';
+import Home from './components/pages/Home';
 
 function App() {
   return (

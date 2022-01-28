@@ -21,6 +21,7 @@ const blockchainReducer = (state = initialState, action) => {
         smartContract: action.payload.smartContract,
         umSmartContract: action.payload.umSmartContract,
         hpSmartContract: action.payload.hpSmartContract,
+        userData: action.payload.userData,
         web3: action.payload.web3,
       };
     case 'CONNECTION_FAILED':

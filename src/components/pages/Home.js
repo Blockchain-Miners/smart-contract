@@ -79,6 +79,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const getData = () => {
+    if (!isdesktop) return;
     if (blockchain.account !== '' && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
     }
@@ -276,7 +277,7 @@ export default function Home() {
                   </div>
                 ) : (
                   // <h3>$HASH {hashDisplay}</h3>
-                  <h3>Connected</h3>
+                  <h3>$HASH: {blockchain.userData.hashToken.amountTotal}</h3>
                 )}
               </div>
             </div>
@@ -293,11 +294,11 @@ export default function Home() {
           </div>
         </header>
         <div className='whatsbmc'>
-          {!isdesktop ? (
+          {/* {!isdesktop ? (
             <div className='sliders'>{SimpleSlider()}</div>
           ) : (
             <div className='sliders'>{SimpleSliderM()}</div>
-          )}
+          )} */}
 
           <h2>WHAT IS BMC?</h2>
           <p>
@@ -305,11 +306,11 @@ export default function Home() {
             inspired by Bitcoin miners (Antminer S19j ASIC Pro) and will be limited to 11,111 items
             that are generated from 280+ traits and attributes.
           </p>
-          {!isdesktop ? (
+          {/* {!isdesktop ? (
             <div className='sliders'>{SimpleSlider2()}</div>
           ) : (
             <div className='sliders'>{SimpleSlider2M()}</div>
-          )}
+          )} */}
         </div>
         <div className='bmcRewards'>
           <h2>BMC REWARDS</h2>

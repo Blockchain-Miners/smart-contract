@@ -4,6 +4,11 @@
   "HASH_POWER_CONTRACT_ADDRESS": "0xEcF7D662c00ebF990DC7336a187d28c692c101A0",
   "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x59607FcD0A5187cc6360291075B8dcf0eA22D880",
   "ASSET_URL": "https://testnets-api.opensea.io/api/v1/assets",
+  "HASH_TOKEN": {
+    "CONTRACT_ADDRESS": "0xEcF7D662c00ebF990DC7336a187d28c692c101A0",
+    "DECIMALS": 18,
+    "SYMBOL": "HASH"
+  },
   "NETWORK": {
     "NAME": "Rinkeby",
     "SYMBOL": "ETH",
