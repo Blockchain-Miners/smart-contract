@@ -44,6 +44,7 @@ export const connect = () => {
     if (metamaskIsInstalled) {
       Web3EthContract.setProvider(ethereum);
       let web3 = new Web3(ethereum);
+      alert('attempting to get account');
       try {
         const accounts = await ethereum.request({
           method: 'eth_requestAccounts',
