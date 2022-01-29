@@ -48,6 +48,7 @@ export const connect = () => {
         const accounts = await ethereum.request({
           method: 'eth_requestAccounts',
         });
+        alert('got account');
         const networkId = await ethereum.request({
           method: 'net_version',
         });
@@ -89,12 +90,15 @@ export const connect = () => {
           });
           // Add listeners end
         } else {
+          alert('err on network');
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
         }
       } catch (err) {
+        alert('something random went wrong');
         dispatch(connectFailed('Something went wrong.'));
       }
     } else {
+      alert('no metamask');
       dispatch(connectFailed('Install Metamask.'));
     }
   };
