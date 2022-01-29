@@ -1,6 +1,7 @@
 // constants
 import Web3 from 'web3';
 import Web3EthContract from 'web3-eth-contract';
+import { getAppConfig, getHashPowerAbi, getOgBmcAbi, getUltraMinerAbi } from '../../service/config';
 // log
 import { fetchData } from '../data/dataActions';
 
@@ -34,27 +35,10 @@ const updateAccountRequest = (payload) => {
 export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    const bmcAbiResponse = await fetch('/config/abi.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-    const umAbiResponse = await fetch('/config/umabi.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-    const abi = await bmcAbiResponse.json();
-    const umAbi = await umAbiResponse.json();
-    const configResponse = await fetch('/config/config.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-    const CONFIG = await configResponse.json();
+    const abi = await getOgBmcAbi();
+    const umAbi = await getUltraMinerAbi();
+    const hpAbi = await getHashPowerAbi();
+    const CONFIG = await getAppConfig();
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
     if (metamaskIsInstalled) {
@@ -67,17 +51,32 @@ export const connect = () => {
         const networkId = await ethereum.request({
           method: 'net_version',
         });
-        if (networkId == CONFIG.NETWORK.ID) {
+        if (networkId === String(CONFIG.NETWORK.ID)) {
           const SmartContractObj = new Web3EthContract(abi, CONFIG.CONTRACT_ADDRESS);
           const UltraMinerSmartContractObj = new Web3EthContract(
             umAbi,
             CONFIG.ULTRA_MINER_CONTRACT_ADDRESS,
           );
+          const HashPowerSmartContractObj = new Web3EthContract(
+            hpAbi,
+            CONFIG.HASH_POWER_CONTRACT_ADDRESS,
+          );
+          const HashSmartContractObj = new Web3EthContract(
+            hpAbi,
+            CONFIG.HASH_TOKEN.CONTRACT_ADDRESS,
+          );
+          const hashAmount = await HashSmartContractObj.methods
+            .balanceOf(accounts[0])
+            .call({ from: accounts[0] });
           dispatch(
             connectSuccess({
               account: accounts[0],
-              smartContract: SmartContractObj, // TODO readable rename
+              userData: {
+                hashToken: { amountWei: hashAmount, amountTotal: Web3.utils.fromWei(hashAmount) },
+              },
+              smartContract: SmartContractObj,
               umSmartContract: UltraMinerSmartContractObj,
+              hpSmartContract: HashPowerSmartContractObj,
               web3: web3,
             }),
           );

@@ -1,25 +1,26 @@
 import React from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
 import './App.scss';
-
-import Home from './components/pages/Home';
 import Burn from './components/pages/Burn';
-import Navigation from './components/blockComponent/Navigation';
+import Claim from './components/pages/Claim/Claim';
+import Home from './components/pages/Home';
 
 function App() {
-	return (
-		<>
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route path="/burn">
-					<Burn />
-				</Route>
-			</Switch>
-		</>
-	);
+  return (
+    <>
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route exact path='/burn'>
+          <Burn />
+        </Route>
+        <Route exact path='/claim'>
+          <Claim />
+        </Route>
+      </Switch>
+    </>
+  );
 }
 
 export default App;

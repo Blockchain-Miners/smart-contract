@@ -1,0 +1,160 @@
+#claimWindowHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 175px;
+  width: 100%;
+  background-color: $color1;
+  @media (max-width: 600px) {
+    height: 135px;
+  }
+  #claimWindowHeaderTitle {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 10px;
+    @media (max-width: 600px) {
+      font-size: 22px;
+    }
+  }
+  #claimWindowHeaderAmount {
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    border-radius: 25px;
+    background-color: #0e0e0e;
+    width: 50%;
+    @media (max-width: 600px) {
+      width: 90%;
+    }
+  }
+  .claimWindowHeaderUtil {
+    margin: 0px 0px 0px 15px;
+    cursor: pointer;
+    font-weight: 800;
+    text-decoration: underline;
+    display: inline-block;
+    font-size: 15px;
+    @media (max-width: 600px) {
+      display: none;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+#claimWindowMiners {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  overflow: scroll;
+  overflow-y: auto;
+  height: calc(100% - 25px);
+  overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 10px solid $color1;
+  .claimWindowMiner {
+    margin: 5px;
+    height: 150px;
+    width: 150px;
+    position: relative;
+    cursor: pointer;
+    @media (max-width: 600px) {
+      height: 125px;
+      width: 125px;
+    }
+    @media (max-width: 450px) {
+      height: 120px;
+      width: 120px;
+    }
+  }
+}
+
+.miner-claim {
+  position: absolute;
+  height: 100px;
+  width: 150px;
+  bottom: 0;
+  border-radius: 5px;
+  background: linear-gradient(0deg, rgba(119, 119, 119, 1) 27%, rgba(27, 215, 228, 0) 53%);
+  &.selectedMiner-claim {
+    background: linear-gradient(0deg, rgba(255, 244, 0, 1) 28%, rgba(27, 215, 228, 0) 53%);
+  }
+  @media (max-width: 600px) {
+    width: 150px;
+    height: 90px;
+  }
+  @media (max-width: 450px) {
+    width: 120px;
+    height: 80px;
+  }
+}
+
+#claimWindowMinerTextContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  bottom: 0;
+  padding: 5px;
+  font-size: 15px;
+  @media (max-width: 600px) {
+    font-size: 15px;
+    padding: 3px;
+  }
+  @media (max-width: 450px) {
+    font-size: 12px;
+    padding: 3px;
+  }
+}
+
+#claimWindowMinerCheckBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: 18px;
+  font-size: 15px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid black;
+  @media (max-width: 600px) {
+    height: 15px;
+    width: 15px;
+    font-size: 13px;
+  }
+  @media (max-width: 450px) {
+    height: 13px;
+    width: 13px;
+    font-size: 10px;
+  }
+}
+.headerBoxClaimButton {
+  position: absolute;
+  align-self: center;
+  bottom: 20px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 25px;
+  color: black;
+  background-color: rgb(255, 168, 0);
+  box-shadow: 3px 3px 0px #866b00;
+  padding: 10px;
+  border: none;
+  h3 {
+    font-size: 20px;
+    @media (max-width: 600px) {
+      font-size: 12px !important;
+    }
+  }
+  &:disabled {
+    background-color: #373737;
+    box-shadow: 3px 3px 0px #0e0e0e;
+  }
+}
