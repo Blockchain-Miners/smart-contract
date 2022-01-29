@@ -29,6 +29,7 @@ function Claim() {
 
   return (
     <>
+      <h3>v1</h3>
       <div className='mainContainer burnPage'>
         <div className='headerBoxTopM'>
           <div className='righBoxTop'>
