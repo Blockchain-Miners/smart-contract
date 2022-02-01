@@ -19,7 +19,7 @@ const ClaimMiner = (props) => {
       <img
         style={{ borderRadius: '5px' }}
         src={token.image_thumbnail_url}
-        alt={`${token.name} ${token.token_id}`}
+        alt={`${token.token_id}`}
       />
       <div className={`miner-claim ${token.isSelected && 'selectedMiner-claim'}`}>
         <h3 id='claimWindowMinerTextContainer'>

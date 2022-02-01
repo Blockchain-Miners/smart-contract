@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Web3 from 'web3';
-import { getAppConfig } from '../../service/config';
 import ClaimMiner from './ClaimMiner/ClaimMiner';
 
 const ClaimWindow = (props) => {
@@ -31,43 +30,57 @@ const ClaimWindow = (props) => {
     (async () => {
       if (blockchain.account) {
         setTokenData(null);
-        const CONFIG = await getAppConfig();
-        const options = CONFIG.ASSET_URL.includes('testnets')
-          ? { method: 'GET' }
-          : {
-              method: 'GET',
-              headers: {
-                Accept: 'application/json',
-                'X-API-KEY': '237f9688dc824aff8013f21bfa667271',
-              },
-            };
+        // const CONFIG = await getAppConfig();
+        // const options = CONFIG.ASSET_URL.includes('testnets')
+        //   ? { method: 'GET' }
+        //   : {
+        //       method: 'GET',
+        //       headers: {
+        //         Accept: 'application/json',
+        //         'Access-Control-Allow-Origin': window.location.origin,
+        //         'X-API-KEY': '237f9688dc824aff8013f21bfa667271',
+        //       },
+        //     };
+        // const allAssets = [];
+        // const limit = 50;
+        // let maxPage = 0;
+        // for (let x = 0; x === maxPage; x++) {
+        //   await fetch(
+        //     `${CONFIG.ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${
+        //       CONFIG.ULTRA_MINER_CONTRACT_ADDRESS
+        //     }&limit=${limit}&offset=${x * limit}`,
+        //     options,
+        //   )
+        //     .then((data) => data.json())
+        //     // eslint-disable-next-line no-loop-func
+        //     .then((data) => {
+        //       if (data.assets) {
+        //         if (data.assets.length === limit) {
+        //           maxPage++;
+        //         }
+        //         allAssets.push(...data.assets);
+        //       } else {
+        //         alert('Something went wrong loading your UltraMiner assets');
+        //       }
+        //     })
+        //     .catch((error) => {
+        //       alert('Something went wrong loading your UltraMiner assets');
+        //       console.log('error loading assets', error);
+        //     });
+        // }
         const allAssets = [];
-        const limit = 50;
-        let maxPage = 0;
-        for (let x = 0; x === maxPage; x++) {
-          await fetch(
-            `${CONFIG.ASSET_URL}?owner=${blockchain.account}&asset_contract_addresses=${
-              CONFIG.ULTRA_MINER_CONTRACT_ADDRESS
-            }&limit=${limit}&offset=${x * limit}`,
-            options,
-          )
-            .then((data) => data.json())
-            // eslint-disable-next-line no-loop-func
-            .then((data) => {
-              if (data.assets) {
-                if (data.assets.length === limit) {
-                  maxPage++;
-                }
-                allAssets.push(...data.assets);
-              } else {
-                alert('Something went wrong loading your UltraMiner assets');
-              }
-            })
-            .catch((error) => {
-              alert('Something went wrong loading your UltraMiner assets');
-              console.log('error loading assets', error);
-            });
-        }
+        try {
+          const walletMiners = await blockchain.umSmartContract.methods
+            .tokensOfOwner(blockchain.account)
+            .call({ from: blockchain.account });
+          allAssets.push(
+            ...walletMiners.map((a) => ({
+              token_id: a,
+              image_thumbnail_url:
+                'https://lh3.googleusercontent.com/o-jYWJJ5Fy9KPFRuV13pd-UsOUQBTkUZL4ddpvcjuf50V8AZbJf-iJanY8BGdrEwIp4GFhJyDONkyp7mVwoYTwOBUtIwtuYpRqYi=w600',
+            })),
+          );
+        } catch (e) {}
         for (let x = 0; x < allAssets.length; x++) {
           const etherAmount = await blockchain.hpSmartContract.methods
             .checkUltraDailyReward(allAssets[x].token_id)
