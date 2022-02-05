@@ -76,8 +76,7 @@ const ClaimWindow = (props) => {
           allAssets.push(
             ...walletMiners.map((a) => ({
               token_id: a,
-              image_thumbnail_url:
-                'https://lh3.googleusercontent.com/o-jYWJJ5Fy9KPFRuV13pd-UsOUQBTkUZL4ddpvcjuf50V8AZbJf-iJanY8BGdrEwIp4GFhJyDONkyp7mVwoYTwOBUtIwtuYpRqYi=w600',
+              image_thumbnail_url: `https://ipfs.io/ipfs/QmZY9Wfa1ytcwkhXymZQ3Kr7mA3pf1tfkfq5q2E8bY7msn/${a}.png`,
             })),
           );
         } catch (e) {}
