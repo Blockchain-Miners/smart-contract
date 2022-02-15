@@ -32,8 +32,6 @@ function App() {
     })();
   }, [setCoinData]);
 
-  console.log(coinData);
-
   return (
     <>
       <Switch>
