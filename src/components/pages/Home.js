@@ -8,7 +8,6 @@ import bmcLogo from '../../assets/bcm-logo.png';
 // mobile images
 import minerLogo from '../../assets/bm-logo-64.png';
 import brandon from '../../assets/brandon.jpg';
-import burnImg from '../../assets/BURN.png';
 //Slider one
 import slide1 from '../../assets/desktop/1.png';
 import slide10 from '../../assets/desktop/10.png';
@@ -246,9 +245,6 @@ export default function Home() {
 
             <div className='righBoxTop'>
               <nav style={{ display: 'flex' }}>
-                <NavLink to='/burn' style={{ marginRight: '10px' }}>
-                  <img src={burnImg} alt='Burn' />
-                </NavLink>
                 <NavLink to='/claim'>
                   <img src={claimImg} alt='Claim' />
                 </NavLink>
