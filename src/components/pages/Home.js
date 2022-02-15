@@ -55,20 +55,25 @@ import organicM from '../../assets/mobile/organic.png';
 import pat from '../../assets/pat.jpg';
 import soldOut from '../../assets/sold-out.png';
 import claimImg from '../../assets/svg/claim.svg';
+import { useCoinContext } from '../../contexts/CoinContext';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { connect } from '../../redux/blockchain/blockchainActions';
 import { fetchData } from '../../redux/data/dataActions';
 import Footer from '../blockComponent/Footer';
 
+const formatNumberCommas = (number) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  }).format(number);
+};
+
 export default function Home() {
-  // Temporary manul variables
-  const btcTotal = '2.06';
-  const btcDollar = '$88,838';
-  const ethTotal = '44';
-  const ethDollar = '$146,396';
-
-  const hashDisplay = '9,410';
-
+  const [coinData] = useCoinContext();
   // query by function
   const isdesktop = useMediaQuery('(max-width: 600px)');
 
@@ -233,9 +238,8 @@ export default function Home() {
                   ) : null}
                 </div>
               ) : (
-                <h3>$HASH {hashDisplay}</h3>
+                <h3>$HASH {blockchain.userData.hashToken.amountTotal || 0}</h3>
               )}
-              <h3>$HASH {hashDisplay}</h3>
             </div>
           </div>
         </div>
@@ -316,13 +320,21 @@ export default function Home() {
             <div className='rewardsContent'>
               <div className='blkBar'>
                 <span>BTC</span>
-                <span>{btcTotal}</span>
-                <span>{btcDollar}</span>
+                <span>{coinData.btc.walletAmount}</span>
+                <span>
+                  {formatNumberCommas(
+                    coinData.btc.last_trade_price * parseInt(coinData.btc.walletAmount),
+                  )}
+                </span>
               </div>
               <div className='blkBar'>
                 <span>ETH</span>
-                <span>{ethTotal}</span>
-                <span>{ethDollar}</span>
+                <span>{coinData.eth.walletAmount}</span>
+                <span>
+                  {formatNumberCommas(
+                    coinData.eth.last_trade_price * parseInt(coinData.eth.walletAmount),
+                  )}
+                </span>
               </div>
               <p>
                 Blockchain Miners Club uses BTC miners to create sustainability for our project.
@@ -334,12 +346,6 @@ export default function Home() {
         <div className='ultraMiners'>
           <h2>ULTRA MINERS</h2>
           <p>2x Rewards • 2x Votes • 10 $HASH per day</p>
-          <div className='blkBox'>
-            <p>
-              <strong>BURNING</strong> is coming! On January 18th, 2022 you will be able to take ANY
-              two OG Blockchain Miners Club NFTs and burn those items to mint an ULTRA MINER
-            </p>
-          </div>
         </div>
         <div className='burningGraphic'>
           {!isdesktop ? (

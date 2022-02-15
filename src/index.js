@@ -1,21 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
-import history from './history';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
+import { CoinContextProvider } from './contexts/CoinContext';
+import history from './history';
+import store from './redux/store';
+import reportWebVitals from './reportWebVitals';
 
 // import "./styles/reset.css";
 
 ReactDOM.render(
-	<Provider store={store}>
-		<Router history={history}>
-			<App />
-		</Router>
-	</Provider>,
-	document.getElementById('root')
+  <Provider store={store}>
+    <Router history={history}>
+      <CoinContextProvider>
+        <App />
+      </CoinContextProvider>
+    </Router>
+  </Provider>,
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
