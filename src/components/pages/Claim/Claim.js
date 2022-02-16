@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import bmcLogo from '../../../assets/bcm-logo.png';
 import minerLogo from '../../../assets/bm-logo-64.png';
-import burnImg from '../../../assets/BURN.png';
 import claimHashSvg from '../../../assets/svg/claim-hash.svg';
 import { connect } from '../../../redux/blockchain/blockchainActions';
 import { fetchData } from '../../../redux/data/dataActions';
@@ -66,9 +64,6 @@ function Claim() {
             </Link>
 
             <div className='righBoxTop'>
-              <NavLink to='/burn' style={{ marginRight: '10px' }}>
-                <img src={burnImg} alt='Burn' />
-              </NavLink>
               <div className='hashDisplay'>
                 {blockchain.account === '' || blockchain.smartContract === null ? (
                   <div className='connectBox'>
