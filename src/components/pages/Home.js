@@ -66,7 +66,7 @@ const formatNumberCommas = (number) => {
     style: 'currency',
     currency: 'USD',
 
-    maximumFractionDigits: 2, // (causes 2500.99 to be printed as $2,501)
+    maximumFractionDigits: 2,
   }).format(number);
 };
 
@@ -74,7 +74,7 @@ const formatCrypto = (number) => {
   return new Intl.NumberFormat('en-US', {
 
     // These options are needed to round to whole numbers if that's what you want.
-    maximumFractionDigits: 3, // (causes 2500.99 to be printed as $2,501)
+    maximumFractionDigits: 3,
   }).format(number);
 };
 
