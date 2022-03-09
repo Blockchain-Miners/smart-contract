@@ -66,9 +66,15 @@ const formatNumberCommas = (number) => {
     style: 'currency',
     currency: 'USD',
 
+    maximumFractionDigits: 2, // (causes 2500.99 to be printed as $2,501)
+  }).format(number);
+};
+
+const formatCrypto = (number) => {
+  return new Intl.NumberFormat('en-US', {
+
     // These options are needed to round to whole numbers if that's what you want.
-    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    maximumFractionDigits: 3, // (causes 2500.99 to be printed as $2,501)
   }).format(number);
 };
 
@@ -320,7 +326,7 @@ export default function Home() {
             <div className='rewardsContent'>
               <div className='blkBar'>
                 <span>BTC</span>
-                <span>{coinData.btc.walletAmount}</span>
+                <span>{formatCrypto(coinData.btc.walletAmount)}</span>
                 <span>
                   {formatNumberCommas(
                     coinData.btc.last_trade_price * parseInt(coinData.btc.walletAmount),
@@ -329,7 +335,7 @@ export default function Home() {
               </div>
               <div className='blkBar'>
                 <span>ETH</span>
-                <span>{coinData.eth.walletAmount}</span>
+                <span>{formatCrypto(coinData.eth.walletAmount)}</span>
                 <span>
                   {formatNumberCommas(
                     coinData.eth.last_trade_price * parseInt(coinData.eth.walletAmount),
