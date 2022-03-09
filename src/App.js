@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Web3 from 'web3';
 import './App.scss';
 import Claim from './components/pages/Claim/Claim';
 import Home from './components/pages/Home';
@@ -25,8 +24,10 @@ function App() {
         const btc = btcData.data;
         const eth = ethData.data;
 
-        btc.walletAmount = (btcWalletData.data.final_balance / 100000000).toFixed(3);
-        eth.walletAmount = Web3.utils.fromWei(ethWalletData.data.final_balance.toString());
+      //   btc.walletAmount = (btcWalletData.data.total_received / 100000000).toFixed(3);
+      //   eth.walletAmount = Web3.utils.fromWei(ethWalletData.data.total_received.toString());
+		  btc.walletAmount = 4.5
+		  eth.walletAmount = 106
         setCoinData({ eth: eth, btc: btc });
       } catch (err) {}
     })();
