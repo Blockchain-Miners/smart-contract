@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Claim from './components/pages/Claim/Claim';
 import Home from './components/pages/Home';
+import TermsOfService from './components/pages/TermsOfService';
 import { useCoinContext } from './contexts/CoinContext';
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
         </Route>
         <Route exact path='/claim'>
           <Claim />
+        </Route>
+		  <Route exact path='/terms-of-service'>
+          <TermsOfService />
         </Route>
       </Switch>
     </>
