@@ -1,0 +1,25 @@
+#tos {
+	background-color: #faff11;
+	width: 100%;
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		padding: 44px
+	}
+
+	.bmc-logo {
+		width: 80%;
+		height: auto;
+	}
+
+	.text-container {
+		padding: 1% 15% 5% 15%;
+		// padding-bottom: 100px;
+		width: 100%;
+	}
+
+	.claim-text {
+		color: black
+	}
+}
