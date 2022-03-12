@@ -15,14 +15,14 @@ export default function OrderedLists({title ='', type = '1', start = '1', indent
 			<h1>{title}</h1>
 			<br/>
 			<ol style={{marginLeft: getIndentMargin()}} type={type} start={start}>
-				{listItems.map(item => {
+				{listItems.map((item, index) => {
 					return (
-						<>
-							<li>
+						<div key={index}>
+							<li >
 								{item}
 							</li>
 							<br />
-						</>
+						</div>
 					)
 				})}
 			</ol>

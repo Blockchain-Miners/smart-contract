@@ -14,13 +14,13 @@ export default function Paragraphs({title = '', underline = false, textContent =
 			)}
 
 			<br />
-			{textContent.map(text => {
+			{textContent.map((text, index) => {
 				let content = text
 				if (underline) {
 					content = underlineText(text)
 				}
 				return (
-					<>
+					<div key={index}>
 						{underline ? (
 							<span>
 								<span style={{textDecoration: 'underline'}}>{content[0]}.</span> {content[1]}
@@ -32,7 +32,7 @@ export default function Paragraphs({title = '', underline = false, textContent =
 						)}
 						<br />
 						<br />
-					</>
+					</div>
 				)
 			})}
 			
