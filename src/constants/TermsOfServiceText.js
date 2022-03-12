@@ -84,5 +84,5 @@ export const disputeTime30DaysText = [
 export const lawAndSeverability = [
 	'Governing Law. These ToS shall be governed by and construed in accordance with the laws of the state of California.',
 	'Severability. If a court or other body of competent jurisdiction finds any provision of these ToS, or portion thereof, to be invalid or unenforceable, such provision will be enforced to the maximum extent permissible so as to effect the intent of the ToS, and the remainder of the ToS will continue in full force and effect.',
-	'Contact Information. If you have any questions, would like to provide feedback, or would like more information about BMC, please feel free to contact us at mailto:hello@blockchainminers.club.'
+	'Contact Information. If you have any questions, would like to provide feedback, or would like more information about BMC, please feel free to contact us at info@blockchainminers.club.'
 ]
