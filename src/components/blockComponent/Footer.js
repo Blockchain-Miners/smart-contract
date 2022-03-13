@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import footerLogo from '../../assets/desktop/footer-logo.png';
 import discord from '../../assets/desktop/g20.png';
 import opensea from '../../assets/desktop/opensea.png';
@@ -7,7 +8,10 @@ import twitter from '../../assets/desktop/twitter.png';
 export default function Footer() {
   return (
     <footer>
-      <img src={footerLogo} alt='BMC Logo' className='fLogo' />
+		 <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', marginBottom: '20px'}}>
+			<img style={{marginBottom: '20px'}} src={footerLogo} alt='BMC Logo' className='fLogo' />
+			<Link to="/terms-of-service">Terms of Service</Link>
+		 </div>
       <div className='socialMedia'>
         <a
           href='https://opensea.io/collection/blockchainminersclubofficial'
