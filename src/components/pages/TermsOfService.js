@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bmcLogo from '../../assets/bcm-logo.png';
 import {
@@ -22,6 +23,10 @@ import OrderedLists from '../OrderedLists';
 import Paragraphs from '../Paragraphs';
 
 export default function TermsOfService() {
+	useEffect(() => {
+		window.scrollTo(0,0)
+	}, [])
+
 	return (
 		<div id="tos">
 			<header>
